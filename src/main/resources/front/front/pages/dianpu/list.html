@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="utf-8">
+<title>店铺</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="../../layui/css/layui.css">
+<link rel="stylesheet" href="../../xznstatic/css/common.css"/>
+<link rel="stylesheet" href="../../xznstatic/css/style.css"/>
+<script type="text/javascript" src="../../xznstatic/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../../xznstatic/js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<style>
+	html::after {
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		content: '';
+		display: block;
+		background-attachment: fixed;
+		background-size: cover;
+		background-position: center;
+			}
+	#test1 {
+		overflow: hidden;
+	}
+	#test1 .layui-carousel-ind li {
+		width: 20px;
+		height: 10px;
+		border-width: 0;
+		border-style: solid;
+		border-color: rgba(0,0,0,.3);
+		border-radius: 6px;
+		background-color: #f7f7f7;
+		box-shadow: 0 0 6px rgba(255,0,0,.8);
+	}
+	#test1 .layui-carousel-ind li.layui-this {
+		width: 30px;
+		height: 10px;
+		border-width: 0;
+		border-style: solid;
+		border-color: rgba(0,0,0,.3);
+		border-radius: 6px;
+		background-color: rgba(135, 206, 250, 1);
+		box-shadow: 0 0 6px rgba(135, 206, 250, 1);
+	}
+	/*  列表  */
+	.recommend {
+		padding: 10px 0;
+		display: flex;
+		justify-content: center;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+	}
+	.recommend .box {
+	    width: 1002px;
+		margin: 0 auto;
+	}
+	.recommend .box .title {
+		padding: 10px 5px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		box-sizing: border-box;
+	}
+	.recommend .box .title span {
+		padding: 0 10px;
+		font-size: 16px;
+		line-height: 1.4;
+	}
+	.recommend .box .filter {
+		padding: 0 10px;
+		display: flex;
+		align-items: center;
+		box-sizing: border-box;
+		width: 100%;
+		flex-wrap: wrap;
+	}
+	.recommend .box .filter .item-list {
+		display: flex;
+		align-items: center;
+		padding-right: 10px;
+	}
+	.recommend .box .filter .item-list .lable {
+		font-size: 14px;
+		color: #333;
+		box-sizing: border-box;
+	}
+	.recommend .box .filter .item-list input {
+		padding-right: 50px;
+		padding-left: 37px;
+		box-sizing: border-box;
+		outline: none;
+	}
+	.recommend .box .filter button {
+		display: flex;
+		padding: 0 10px;
+		box-sizing: border-box;
+		align-items: center;
+		justify-content: center;
+		outline: none;
+	}
+	.recommend .box .filter button i {
+		margin-right: 4px;
+	}
+	.recommend .box .list {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.recommend .box .list .list-item {
+		flex: 0 0 25%;
+		box-sizing: border-box;
+	}
+	.recommend .box .list .list-item .list-item-body {
+		cursor: pointer;
+		border: 1px solid rgba(0, 0, 0, 3);
+		padding: 5px;
+		box-sizing: border-box;
+	}
+	.recommend .box .list .list-item-body img {
+		width: 100%;
+		height: 100px;
+		display: block;
+		margin: 0 auto;
+	}
+	.recommend .box .list .list-item-body .info {
+		display: flex;
+		flex-wrap: wrap;
+		background-image: -moz-linear-gradient(0deg, rgb(194, 239, 255), rgb(199, 255, 246));
+		background-image: -webkit-linear-gradient(0deg, rgb(194, 239, 255), rgb(199, 255, 246));
+		background-image: linear-gradient(0deg, rgb(194, 239, 255), rgb(199, 255, 246));
+	}
+	.recommend .box .list .list-item-body .info .price {
+		padding-top: 5px;
+		color: red;
+		font-size: 14px;
+		text-align: center;
+		box-sizing: border-box;
+	}
+	.recommend .box .list .list-item-body .info .name {
+		padding-top: 5px;
+		color: red;
+		font-size: 14px;
+		text-align: center;
+		box-sizing: border-box;
+	}
+	.recommend .box .list .list-item3 {
+		flex: 0 0 33.33%;
+	}
+	.recommend .box .list .list-item5 {
+		flex: 0 0 20%;
+	}
+	.recommend .box .news {
+		display: flex;
+		flex-wrap: wrap;
+		padding: 0;
+        width: 100%;
+	}
+	.recommend .box .news .list-item {
+		flex: 0 0 50%;
+		padding: 0 10px;
+		box-sizing: border-box;
+	}
+	.recommend .box .news .list-item .list-item-body {
+		cursor: pointer;
+		border: 1px solid rgba(0, 0, 0, 3);
+		padding: 10px;
+		box-sizing: border-box;
+		display: flex;
+	}
+
+	.recommend .box .news .list-item .list-item-body img {
+		width: 120px;
+		height: 100%;
+		display: block;
+		margin: 0 auto;
+	}
+
+	.recommend .box .news .list-item .list-item-body .item-info {
+		flex: 1;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+		padding-left: 10px;
+		box-sizing: border-box;
+	}
+
+	.recommend .box .news .list-item .list-item-body .item-info .name {
+		padding-top: 5px;
+		color: red;
+		font-size: 14px;
+		box-sizing: border-box;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+	}
+
+	.recommend .box .news .list-item .list-item-body .item-info .time {
+		padding-top: 5px;
+		color: red;
+		font-size: 14px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+		box-sizing: border-box;
+	}
+	.recommend .box .news .list-item1 {
+		flex: 0 0 100%;
+	}
+	.recommend .box .news .list-item3 {
+		flex: 0 0 33.33%;
+	}
+	.index-pv1 .animation-box:hover {
+		transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1.12) rotate(0deg) skew(0deg, 0deg);
+		transition: all 1.3s;
+	}
+	.layui-laypage .layui-laypage-count {
+		padding: 0 10px;
+	}
+	.layui-laypage .layui-laypage-skip {
+		padding-left: 10px;
+	}
+	.button{
+		display: inline-block;
+		position: relative;
+		z-index:1;
+		overflow: hidden;
+		text-decoration: none;
+		font-family: sans-serif;
+		font-weight: 600;
+		font-size: 1.5em;
+		padding:0.3em 3em;
+		color:blue;
+		border:0.15em solid rgb(135, 206, 250);
+		border-radius: 2em;
+		transition:2s;
+		cursor: pointer;
+	}
+	.button::before,
+	.button::after{
+		content:"";
+		position:absolute;
+		top:-1.5em;
+		z-index:-1;
+		width:200%;
+		aspect-ratio: 1;
+		border:none;
+		border-radius: 40%;
+		background-color: rgba(0,0,255,0.25);
+		transition: 2s;
+	}
+	.button::before{
+		left:-80%;
+		transform:translate3d(0,5em,0) rotate(-340deg);
+	}
+	.button::after{
+		right:-80%;
+		transform: translate3d(0,5em,0) rotate(390deg);
+	}
+	.button:hover,
+	.button:focus{
+		color: white;
+	}
+	.button:hover:before,
+	.button:hover:after,
+	.button:focus:before,
+	.button:focus:after{
+		transform: none;
+		background-color: rgba(0,0,255,0.75);
+	}
+</style>
+<body>
+  <div id="app">
+    <div class="banner">
+      <div class="layui-carousel" id="test1" :style='{"boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 auto","borderColor":"rgba(0,0,0,.3)","borderRadius":"0px","borderWidth":"0","width":"100%","borderStyle":"solid"}'>
+      		  <div carousel-item>
+      			<div v-for="(item,index) in swiperList" :key="index">
+      				<img style="width: 100%;height: 100%;object-fit:cover;" :src="item.img" />
+      			</div>
+      		  </div>
+      		</div>
+    </div>
+	<div class="recommend index-pv1" :style='{"boxShadow":"0 0 0px ","margin":"10px 0 0 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(255, 0, 0, 0)","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}'>
+		<div class="box" style="width:80%">
+			<div class="title" :style='{"backgroundColor":"#77C38C","justifyContent":"space-between","height":"82px"}'>
+				<div style="padding-left: 30px;height:32px">
+					<svg t="1711986932082" class="icon" style="float:left;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6321" width="32" height="32"><path d="M603.7 280.3l-67.1 3.5-67.1-3.5c-144.7-7.5-263.2 122.1-253.2 277.2l2.5 39.4C229.6 763.7 363.3 890.4 519 881.2l17.7-1 17.7 1c155.7 9.2 289.4-117.5 300.1-284.3l2.5-39.4c9.9-155-108.5-284.7-253.3-277.2z" fill="#F93E48" p-id="6322"></path><path d="M596.7 284.3l-1.7 0.1c110.6 33.1 190.3 146 181.9 276.4l-2.6 40.6c-9 139.4-101.1 251.5-221.1 284.1 153.2 5.7 283.6-119.8 294.2-284.6l2.5-39.4c10-155-108.4-284.7-253.2-277.2z" fill="#F71128" p-id="6323"></path><path d="M549.3 906c-6.1 0-12.3-0.3-18.4-0.7l-18.1-1.1-18.1 1c-6.1 0.3-12.3 0.5-18.4 0.5-83.5 0-163.2-31.4-224.5-88.4-61.5-57.2-98.6-134.9-104.4-218.8l-2.8-39.9c-2.8-40 2.7-79.2 16.3-116.4 13.1-35.8 33-68.2 59.1-96.2 26.2-28.1 57.2-50.2 92.1-65.7 36.2-16.1 74.8-24.3 114.6-24.3 4.6 0 9.3 0.1 14 0.3l72 3.5 72-3.5c4.6-0.2 9.3-0.3 14-0.3 39.9 0 78.4 8.2 114.6 24.3 34.9 15.5 65.9 37.6 92.1 65.7 26.2 28 46 60.4 59.1 96.2 13.6 37.3 19.1 76.4 16.3 116.4l-2.8 39.9c-5.8 83.9-42.8 161.7-104.3 218.9-61.2 57-140.9 88.6-224.4 88.6z m-36.5-41.9l20.3 1.3c5.4 0.3 10.8 0.6 16.2 0.6 73.3 0 143.4-27.7 197.2-77.8 54-50.3 86.6-118.6 91.7-192.3L841 556c2.4-34.4-2.3-68-14-100-11.2-30.7-28.3-58.5-50.8-82.6-22.5-24.1-49.1-43.1-79.1-56.5C666 303 632.9 296 598.7 296c-4 0-8 0.1-12 0.3l-73.9 3.6-73.9-3.6c-4-0.2-8.1-0.3-12-0.3-34.2 0-67.3 7-98.4 20.8-30 13.3-56.6 32.3-79.1 56.5-22.5 24.1-39.6 51.9-50.8 82.6-11.7 32-16.4 65.6-14 100l2.8 39.9c5.1 73.7 37.6 142 91.7 192.2 53.8 50.1 123.9 77.7 197.2 77.7 5.4 0 10.8-0.1 16.2-0.4l20.3-1.2z" fill="#09050F" p-id="6324"></path><path d="M513 450c-60.1 0-117.6-22.1-162.1-62.1-8.2-7.4-8.9-20-1.5-28.2s20-8.9 28.2-1.5C414.8 391.6 462.8 410 513 410c50 0 98-18.4 135.1-51.9 8.2-7.4 20.9-6.7 28.2 1.5 7.4 8.2 6.7 20.9-1.5 28.2C630.4 427.9 572.9 450 513 450zM364.5 140.7s0.9 0 2.7 0.1c0.9 0 2 0.1 3.2 0.1 0.6 0 1.3 0 2.1 0.1 0.9 0.1 1.8 0.1 2.8 0.2 2 0.2 4.1 0.3 6.5 0.5 2.2 0.3 4.6 0.6 7.2 0.9 2.6 0.3 5.3 0.9 8.1 1.4 1.4 0.2 2.9 0.6 4.4 0.9 1.5 0.3 3 0.7 4.6 1.1 1.6 0.3 3.1 0.8 4.7 1.3s3.2 0.9 4.9 1.4c1.6 0.6 3.3 1.1 5 1.7 0.8 0.3 1.7 0.6 2.5 0.9 0.8 0.3 1.7 0.7 2.5 1 1.7 0.7 3.4 1.4 5.2 2 1.7 0.7 3.4 1.5 5.2 2.3 0.9 0.4 1.7 0.8 2.6 1.2 0.9 0.4 1.7 0.9 2.6 1.3 1.7 0.9 3.5 1.8 5.3 2.7 7 3.9 13.9 8.3 20.6 13.2 6.7 5 13.1 10.6 19.1 16.5 6 6 11.5 12.5 16.5 19.2 5 6.7 9.3 13.7 13.2 20.7 0.9 1.8 1.8 3.5 2.7 5.3 0.4 0.9 0.9 1.7 1.3 2.6 0.4 0.9 0.8 1.8 1.2 2.6 0.8 1.7 1.6 3.5 2.3 5.2 0.7 1.7 1.4 3.5 2 5.2 0.3 0.9 0.7 1.7 1 2.5 0.3 0.9 0.6 1.7 0.9 2.5 0.6 1.7 1.1 3.3 1.7 5 0.5 1.6 0.9 3.3 1.4 4.9 0.4 1.6 0.9 3.1 1.3 4.7s0.7 3.1 1 4.6c0.3 1.5 0.7 2.9 0.9 4.4 0.5 2.9 1 5.6 1.4 8.1 0.3 2.6 0.6 5 0.9 7.2 0.2 2.2 0.3 4.3 0.5 6.1 0.1 0.9 0.1 1.8 0.2 2.6 0 0.8 0 1.6 0.1 2.3 0 1.4 0.1 2.7 0.1 3.7 0 2 0.1 3 0.1 3 0.2 11-8.5 20.2-19.5 20.4-11 0.2-20.1-8.4-20.4-19.4v-1s0-0.8-0.1-2.3c0-0.8 0-1.7-0.1-2.8V307c-0.1-0.6-0.1-1.3-0.2-2-0.1-1.4-0.2-3-0.4-4.7-0.2-1.7-0.5-3.5-0.7-5.5-0.2-2-0.7-4-1.1-6.2-0.2-1.1-0.4-2.2-0.7-3.3-0.3-1.1-0.5-2.3-0.8-3.5-0.2-1.2-0.7-2.4-1-3.6-0.3-1.2-0.7-2.5-1.1-3.7-0.4-1.2-0.9-2.5-1.3-3.8-0.2-0.6-0.4-1.3-0.7-1.9-0.2-0.7-0.5-1.3-0.8-1.9-0.5-1.3-1-2.6-1.6-3.9-0.6-1.3-1.2-2.6-1.8-4-0.3-0.7-0.6-1.3-0.9-2-0.3-0.7-0.7-1.3-1-2-0.7-1.3-1.4-2.7-2.1-4-3-5.3-6.3-10.7-10.2-15.8-3.9-5.1-8.1-10-12.7-14.7-4.7-4.6-9.6-8.8-14.7-12.7-5.2-3.8-10.5-7.1-15.8-10.1-1.4-0.7-2.7-1.4-4-2.1-0.7-0.3-1.3-0.7-2-1-0.7-0.3-1.3-0.6-2-0.9-1.3-0.6-2.6-1.2-4-1.8-1.3-0.5-2.7-1-3.9-1.5-0.7-0.2-1.3-0.5-1.9-0.7-0.7-0.2-1.3-0.4-1.9-0.6-1.3-0.4-2.5-0.9-3.8-1.3-1.3-0.4-2.5-0.7-3.7-1.1-1.2-0.3-2.4-0.7-3.6-1-1.2-0.3-2.3-0.5-3.5-0.8-1.1-0.3-2.2-0.5-3.3-0.7-2.2-0.4-4.3-0.8-6.2-1-2-0.2-3.8-0.5-5.5-0.7-1.6-0.1-3-0.2-4.3-0.3-0.7-0.1-1.3-0.1-1.9-0.2-0.7 0-1.4 0-2-0.1-1.3 0-2.4-0.1-3.2-0.1-1.8 0-2.7-0.1-2.7-0.1-11.2-0.3-20.1-9.6-19.8-20.8s9.1-20.5 20.4-20.2z" fill="#09050F" p-id="6325"></path></svg>
+					<div style="float: left;margin-top: 3.4px;margin-bottom: 3.4px;">
+						<span :style='{"padding":"0 10px","boxShadow":"0 0 6px rgba(255,0,0,0)","borderColor":"rgba(255,0,0,1)","backgroundColor":"rgba(0,0,0,0)","borderRadius":"0 0 2px 0","borderWidth":"0","fontSize":"18px","borderStyle":"solid"}'>店铺</span>
+					</div>
+				</div>
+			</div>
+			<div class="list" style="position: relative;background-color:#8DCD9F;">
+				<div style="width:18%;height:100%;">
+					<div style="width:100%;height: 100%;">
+						<div :style='{"width":"100%","height":"auto"}'>
+							<div style="display: inline-block;text-align: center;cursor: pointer;" class="category-search" :index="-1" :style='swiperIndex==-1?{"color":"#fff","width":"100%","height":"50px","lineHeight":"50px","fontSize":"14px"}:{"color":"#333","width":"100%","height":"50px","lineHeight":"50px","fontSize":"14px"}'>
+								<div style="height:50px;width:25%;padding-right:20px;float: left;text-align: right">
+									<svg t="1711767032288" class="icon" style="margin-top: 9px;margin-bottom: 9px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5113" width="32" height="32"><path d="M345.201209 541.866667l-2.332445 2.56 3.413334-4.096 4.494222-4.437334 7.111111-5.347555 3.811556-2.218667a59.847111 59.847111 0 0 1 16.497777-5.688889l8.704-0.910222h1.706667a58.823111 58.823111 0 0 1 31.630222 9.329778l12.344889 8.988444-1.536-2.787555c-2.446222-4.551111-4.835556-9.159111-7.111111-13.653334l-6.599111-13.653333-6.314667-14.392889a348.615111 348.615111 0 0 1-15.815111-46.307555L390.826098 428.942222l-2.389334-16.156444-0.853333-10.922667-0.341333-10.865778c0-3.072 0.113778-5.518222 0.341333-11.264l0.341333-4.892444a52.224 52.224 0 0 1 2.104889-10.808889l2.048-5.745778 2.161778-4.664889a61.553778 61.553778 0 0 1 12.174222-15.36c10.24-9.159111 23.608889-14.279111 37.603556-14.279111l6.485333 0.341334 4.209778 0.568888 5.233778 1.251556c2.048 0.625778 3.697778 1.251556 8.704 3.242667l4.323555 2.275555a48.355556 48.355556 0 0 1 8.021334 5.688889l4.266666 3.925333 2.673778 2.844445 11.946667 14.449778c11.434667 14.392889 22.186667 29.411556 37.432889 51.996444l33.223111 48.753778 21.219555 28.899555 14.165334 18.147556 2.958222-37.831111a55.352889 55.352889 0 0 1 7.850667-24.974222l2.275555-3.584 4.551111-5.461334 4.949334-4.778666 6.314666-4.721778 5.347556-3.072 4.096-1.820445 7.68-2.503111a55.011556 55.011556 0 0 1 13.767111-1.649777 54.385778 54.385778 0 0 1 31.459555 9.671111l4.096 2.958222 1.706667 1.422222c6.257778 5.461333 11.264 12.231111 14.620445 19.854222l7.68 18.375111 1.365333 3.640889c2.446222 6.542222 4.835556 13.255111 7.054222 20.252445l6.997333 23.552 8.419556 35.043555 6.542222 38.115556 3.015111 23.893333 1.877334 22.755556 0.910222 19.114666c2.104889 26.339556 19.342222 62.293333 50.631111 102.741334 19.342222 24.917333 43.064889 50.176 65.422222 70.542222l13.084445 11.605333-36.750223 43.406223a632.206222 632.206222 0 0 1-86.755555-90.794667c-37.432889-48.355556-59.221333-93.752889-62.407111-135.224889l-1.706667-28.615111-2.104889-20.195556-4.664889-30.663111-7.509333-35.441778-5.404444-20.081777-5.233778-16.782223-7.509334-20.48-4.949333-11.662222-5.233778 61.667556-2.446222 19.342222-3.584 21.617778-12.515555 55.409778-39.765334-41.585778-15.587555-17.635556c-7.452444-8.533333-14.563556-17.009778-21.390223-25.429333l-18.602666-23.722667-18.716445-25.372444-29.468444-42.894222-19.114667-28.046223c-11.036444-15.928889-19.342222-27.136-28.216889-37.944889l-6.485333-7.452444-0.341333 10.069333 0.341333 10.069334 1.649778 13.710222 1.365333 7.850667c2.446222 12.231111 6.087111 24.860444 10.865778 37.831111l5.12 13.084444 5.688889 12.743111c3.640889 7.907556 7.68 15.928889 12.060444 24.064l9.216 16.497778c5.461333 9.272889 11.036444 18.261333 16.725334 26.908444l13.653333 20.081778 18.318222 25.031111 10.638222 13.937778 1.877334 2.730667 3.015111 5.347555 2.844444 5.916445 32.142222 70.428444-70.087111-32.881778a386.673778 386.673778 0 0 1-36.977777-20.252444l-13.368889-8.419556-18.090667-12.060444-21.276444-14.904889-40.561778-29.866667 4.152889 10.24c7.111111 16.099556 16.497778 31.402667 27.875555 45.966223l13.141334 15.644444c7.907556 8.647111 16.327111 16.839111 25.088 24.405333l22.471111 17.806223 4.608 3.185777c7.793778 5.347556 14.449778 9.500444 23.324444 14.904889 100.864 78.961778 151.324444 158.151111 178.631111 244.906667l4.380445 14.506667-54.727111 15.530666c-23.210667-81.635556-67.242667-154.908444-159.857778-227.84l-11.093334-6.656-19.569777-13.141333-9.443556-7.224889a359.992889 359.992889 0 0 1-34.986667-30.72l-13.482666-14.222222-2.844445-3.299556a275.000889 275.000889 0 0 1-51.825777-86.357333 53.248 53.248 0 0 1-2.730667-10.695111l-0.455111-4.380445-0.113778-6.599111 0.113778-1.251555c0.227556-2.844444 0.625778-5.688889 1.137778-7.964445l0.910222-3.072a43.576889 43.576889 0 0 1 1.706666-5.12l2.275556-4.949333 3.242667-5.575111c0.568889-0.796444 1.592889-1.991111 4.039111-4.949333z" fill="#323232" p-id="5114"></path><path d="M461.083876 0c107.463111 0 202.865778 48.810667 221.184 153.486222a212.935111 212.935111 0 0 1 72.248888-12.572444c120.661333 0 212.593778 130.844444 212.593778 254.293333a225.507556 225.507556 0 0 1-103.367111 190.464c60.700444 92.899556 66.218667 218.851556 18.033778 312.604445l-6.599111 12.060444c-21.048889 41.756444-60.245333 74.524444-113.948445 95.345778a326.769778 326.769778 0 0 1-54.727111 15.758222l-14.506666 2.56-9.500445-0.455111c-85.333333-5.518222-173.738667-60.871111-235.576889-137.841778l-23.324444-30.492444c-8.305778-10.353778-14.848-16.384-38.912-38.912a213.617778 213.617778 0 0 1-112.64 22.755555c-108.942222-7.736889-196.835556-98.986667-202.808889-210.659555A227.157333 227.157333 0 0 1 112.070542 482.417778 225.792 225.792 0 0 1 56.88832 333.937778c0-122.595556 96.426667-222.094222 215.779556-223.573334A217.315556 217.315556 0 0 1 461.083876 0z m0 56.888889c-53.532444 0-103.480889 27.306667-133.347556 72.419555l-5.688889 9.272889-16.156444 28.273778-32.540445 0.398222C185.286542 168.391111 113.777209 242.346667 113.777209 333.937778c0 37.432889 12.060444 72.931556 33.678222 101.774222l7.566222 9.386667 29.582223 34.076444-26.453334 36.579556a170.382222 170.382222 0 0 0-32.085333 109.624889c4.437333 83.228444 69.973333 151.210667 150.186667 157.013333a156.444444 156.444444 0 0 0 71.452444-11.605333l11.150222-5.12 35.555556-18.147556 56.718222 53.361778c2.787556 2.787556 4.835556 4.949333 7.338667 7.623111l4.949333 5.518222c4.551111 5.290667 8.817778 10.865778 19.626667 25.429333 51.370667 69.063111 124.586667 116.906667 191.146666 126.065778l13.880889 1.365334 10.581334-1.877334a267.946667 267.946667 0 0 0 27.818666-7.281778l14.222222-5.12c37.091556-14.336 63.658667-34.872889 80.213334-61.724444l5.12-9.159111c42.496-73.102222 41.472-175.786667-2.616889-252.984889l-7.281778-11.946667-31.459555-48.128 48.412444-30.947555A168.675556 168.675556 0 0 0 910.221653 395.264c0-101.944889-75.548444-197.461333-155.704889-197.461333-14.677333 0-29.013333 1.991111-42.780444 5.916444l-10.24 3.299556-63.658667 22.869333-11.605333-66.56C614.399431 96.142222 552.902542 56.888889 461.083876 56.888889z" fill="#323232" p-id="5115"></path><path d="M395.377209 117.589333c62.862222-36.295111 157.980444-10.808889 194.275555 52.053334a28.444444 28.444444 0 1 1-49.265777 28.444444c-20.593778-35.669333-80.896-51.768889-116.565334-31.232a28.444444 28.444444 0 1 1-28.444444-49.265778z" fill="#323232" p-id="5116"></path></svg>
+								</div>
+								<div style="height:50px;float: left;text-align: left">
+									<span style="font-size: 18px">全部</span>
+								</div>
+								<div style="height:50px;float:right;padding-right: 10px">
+									<svg t="1711767757860" class="icon" style="margin-top: 9px;margin-bottom: 9px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10039" width="32" height="32"><path d="M369.664 290.304a43.52 43.52 0 0 1 54.784 0l230.4 197.632a30.208 30.208 0 0 1 0 46.592l-230.4 197.632a43.52 43.52 0 0 1-54.784 0 30.208 30.208 0 0 1 0-46.592l204.8-174.08-204.8-174.08a30.208 30.208 0 0 1 0-47.104z" p-id="10040" fill="#6A767D"></path></svg>
+								</div>
+							</div>
+							<div class="category-search" :index="index" :style='swiperIndex==index?{"color":"#fff","width":"100%","height":"50px","lineHeight":"50px","fontSize":"14px"}:{"color":"#333","width":"100%","height":"50px","lineHeight":"50px","fontSize":"14px"}' v-for="(item,index) in categoryList" :key="index" style="display: inline-block;text-align: center;cursor: pointer;">
+								<div style="height:50px;width:25%;padding-right:20px;float: left;text-align: right"></div>
+								<div style="height:50px;float: left;text-align: left">
+									<span style="font-size: 18px">{{categoryList[index]}}</span>
+								</div>
+								<div style="height:50px;float:right;padding-right: 10px">
+									<svg t="1711767757860" class="icon" style="margin-top: 9px;margin-bottom: 9px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10039" width="32" height="32"><path d="M369.664 290.304a43.52 43.52 0 0 1 54.784 0l230.4 197.632a30.208 30.208 0 0 1 0 46.592l-230.4 197.632a43.52 43.52 0 0 1-54.784 0 30.208 30.208 0 0 1 0-46.592l204.8-174.08-204.8-174.08a30.208 30.208 0 0 1 0-47.104z" p-id="10040" fill="#6A767D"></path></svg>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div style="background-color: #d4edda;width: 18%;height:200px;position: absolute;bottom: 0"></div>
+				</div>
+				<div style="width:82%;background-color: #ECF6EF">
+					<form class="layui-form filter" :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0 10px 0","borderColor":"rgba(0,0,0,.3)","borderRadius":"4px","alignItems":"center","borderWidth":"0","borderStyle":"solid","justifyContent":"flex-end","height":"64px"}'>
+						<div class="item-list">
+							<svg t="1711725274947" class="icon layui-icon layui-icon-search" id="btn-search" style="transform: translateX(32px);height:22px;width: 22px;cursor: pointer;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3970" width="28" height="28"><path d="M926.72 870.4l-256-256c56.32-56.32 76.8-133.12 76.8-220.16 0-179.2-138.24-327.68-317.44-327.68S107.52 215.04 107.52 394.24s143.36 317.44 322.56 317.44c76.8 0 143.36-15.36 199.68-61.44l256 261.12c5.12 5.12 10.24 5.12 15.36 5.12 5.12 0 15.36-5.12 20.48-10.24C931.84 896 936.96 880.64 926.72 870.4L926.72 870.4zM158.72 389.12c0-148.48 122.88-271.36 271.36-271.36s271.36 122.88 271.36 271.36-122.88 271.36-271.36 271.36C276.48 660.48 158.72 537.6 158.72 389.12L158.72 389.12z" p-id="3971"></path></svg>
+							<input type="text" :style='{"boxShadow":"0 0 6px rgba(255,0,0,0)","borderColor":"#ccc","backgroundColor":"#fff","color":"rgba(135, 206, 250, 1)","borderRadius":"8px","borderWidth":"0","width":"400px","fontSize":"14px","borderStyle":"solid","height":"35px"}' name="dianjiaming" id="dianjiaming" placeholder="站内搜索店铺" autocomplete="off" class="layui-input">
+						</div>
+						<button :style='{"padding":"0 15px","boxShadow":"0 0 8px rgba(0,0,0,0)","margin":"0 0 0 10px","borderColor":"rgba(135, 206, 250, 1)","backgroundColor":"rgba(135, 206, 250, 1)","color":"#fff","borderRadius":"4px","borderWidth":"0","width":"auto","fontSize":"14px","borderStyle":"solid","height":"40px"}' v-if="isAuth('dianpu','新增')" @click="jump('../dianpu/add.html')" type="button" class="layui-btn btn-theme">
+							<i v-if="true" class="layui-icon">&#xe654;</i>添加
+						</button>
+					</form>
+					<div v-if="2 == 1" style="position: absolute;left: 0;top: 0;transform: translate3d(-100%, 0, 0);" :style='{"padding":"0","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(0,0,0,1)","backgroundColor":"rgba(0,0,0,0)","borderRadius":"10px","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}'>
+						<div style="text-align: center;cursor: pointer;" class="category-search" :index="-1" :style='swiperIndex==-1?{"padding":"0 10px","boxShadow":"0 0 6px rgba(0,0,0,.3)","margin":"0 10px 0 0","borderColor":"rgba(0,0,0,1)","backgroundColor":"rgba(135, 206, 250, 1)","color":"#fff","borderRadius":"10px","borderWidth":"0","width":"110px","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}:{"padding":"0 10px","boxShadow":"0 0 6px rgba(0,0,0,.3)","margin":"0 10px 0 0","borderColor":"rgba(0,0,0,1)","backgroundColor":"#fff","color":"#333","borderRadius":"10px","borderWidth":"0","width":"110px","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}'>全部</div>
+						<div v-for="(item,index) in categoryList" :key="index" >
+							<div style="text-align: center;cursor: pointer;" :style='swiperIndex==index?{"padding":"0 10px","boxShadow":"0 0 6px rgba(0,0,0,.3)","margin":"0 10px 0 0","borderColor":"rgba(0,0,0,1)","backgroundColor":"rgba(135, 206, 250, 1)","color":"#fff","borderRadius":"10px","borderWidth":"0","width":"110px","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}:{"padding":"0 10px","boxShadow":"0 0 6px rgba(0,0,0,.3)","margin":"0 10px 0 0","borderColor":"rgba(0,0,0,1)","backgroundColor":"#fff","color":"#333","borderRadius":"10px","borderWidth":"0","width":"110px","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' :index="index" class="category-search">{{categoryList[index]}}</div>
+						</div>
+					</div>
+					<div style="width:100%;display: grid;grid-template-columns: repeat(4, 1fr);gap: 20px;">
+						<div @click="jump('../dianpu/detail.html?id='+item.id)" v-for="(item,index) in dataList" :key="index" class="list-item" :class="4=='3'?'list-item3':4=='5'?'list-item5':''" style="width: 100%">
+							<div class="list-item-body animation-box" :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
+								<img :style='{"boxShadow":"0px 0px 0px rgba(160, 67, 26, 1)","borderColor":"rgba(0,0,0,.3)","borderRadius":"6px","borderWidth":"0","width":"190px","borderStyle":"solid","height":"190px"}' :src="item.tupian?item.tupian.split(',')[0]:''">
+								<div class="info" style="border-radius: 10px">
+									<div style="width:100%;">
+										<div v-if="true" :style='{"isshow":true,"padding-left":"5px","float":"left","backgroundColor":"rgba(0,0,0,0)","color":"#444444","borderRadius":"0","fontSize":"13px"}' class="name">名称:{{item.shangpinmingcheng}}</div>
+										<div v-if="item.price" :style='{"padding-right":"5px","float":"right","backgroundColor":"rgba(0,0,0,0)","color":"#444444","borderRadius":"0","fontSize":"13px"}' class="price">价格:{{item.price}} RMB</div>
+									</div>
+									<div style="width:100%;margin-top: 10px">
+										<span style="float: right;padding-right: 5px;color: #6A767D">点击进入详细页面&nbsp;&nbsp;></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="pager" id="pager" :style="{textAlign:1==1?'left':1==2?'center':'right'}"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+  </div>
+
+  <script src="../../layui/layui.js"></script>
+  <script src="../../js/vue.js"></script>
+  <script src="../../js/config.js"></script>
+  <script src="../../modules/config.js"></script>
+  <script src="../../js/utils.js"></script>
+
+  <script type="text/javascript">
+    var vue = new Vue({
+      el: '#app',
+      data: {
+        swiperList: [],
+	categoryList: [],
+        dataList: [],
+		swiperIndex: '-1'
+      },
+      filters: {
+        newsDesc: function(val) {
+          if (val) {
+            if (val.length > 60) {
+              return val.substring(0, 60).replace(/<[^>]*>/g).replace(/undefined/g, '');
+            } else {
+              return val.replace(/<[^>]*>/g).replace(/undefined/g, '');
+            }
+          }
+          return '';
+        }
+      },
+      methods: {
+      	isAuth(tablename, button) {
+          return isFrontAuth(tablename, button)
+        },
+        jump(url) {
+          jump(url)
+        }
+      }
+    });
+
+    layui.use(['layer', 'element', 'carousel', 'laypage', 'http', 'jquery'], function() {
+      var layer = layui.layer;
+      var element = layui.element;
+      var carousel = layui.carousel;
+      var laypage = layui.laypage;
+      var http = layui.http;
+      var jquery = layui.jquery;
+
+			var limit = 8;
+
+      // 获取轮播图 数据
+      http.request('config/list', 'get', {
+        page: 1,
+        limit: 5
+      }, function(res) {
+        if (res.data.list.length > 0) {
+          let swiperList = [];
+          res.data.list.forEach(element => {
+            if (element.value != null) {
+              swiperList.push({
+                img: element.value
+              });
+            }
+          });
+          vue.swiperList = swiperList;
+
+		  vue.$nextTick(() => {
+		    carousel.render({
+		    	elem: '#test1',
+		  				width: '100%',
+		    	height: '450px',
+		    	arrow: 'hover',
+		    	anim: 'default',
+		    	autoplay: 'true',
+		    	interval: '3000',
+		    	indicator: 'inside'
+		    });
+
+		  })
+          // vue.$nextTick(()=>{
+          //   window.xznSlide();
+          // });
+        }
+      });
+
+
+	//类型查询
+      categoryList();
+	//类型搜索 
+      $(document).on("click", ".category-search", function(e){
+		  vue.swiperIndex = $(this).attr('index')
+    	  pageList(e.target.innerText);
+      });
+
+      function categoryList() {
+          // 获取列表数据
+          http.request('option/dianjia/dianjiaming', 'get', {}, function(res) {
+            vue.categoryList = res.data
+          })
+
+        }
+      var vCategory = '';
+      // 分页列表
+      pageList();
+
+      // 搜索按钮
+      jquery('#btn-search').click(function(e) {
+        pageList();
+      });
+
+      function pageList(category) {
+        var param = {
+          page: 1,
+          limit: limit
+        }
+	if(category!=null && category!='全部') {
+        	vCategory = category;
+   	     if (jquery('#shangpinmingcheng').val()) {
+       	  	 param['shangpinmingcheng'] = '';
+             }
+   	     if (jquery('#dianjiaming').val()) {
+       	  	 param['dianjiaming'] = '';
+             }
+        }
+        if(vCategory!='' && category!='全部') {
+        	param['dianjiaming'] = category;
+        }
+
+
+        if (jquery('#shangpinmingcheng').val()) {
+          param['shangpinmingcheng'] = jquery('#shangpinmingcheng').val() ? '%' + jquery('#shangpinmingcheng').val() + '%' : '';
+        }
+        if (jquery('#dianjiaming').val()) {
+          param['dianjiaming'] = jquery('#dianjiaming').val() ? '%' + jquery('#dianjiaming').val() + '%' : '';
+        }
+
+
+
+        // 获取列表数据
+        http.request('dianpu/list', 'get', param, function(res) {
+          vue.dataList = res.data.list
+          // 分页
+          laypage.render({
+            elem: 'pager',
+            count: res.data.total,
+            limit: limit,
+            groups: 3,
+            layout: ["prev","page","next"],
+            theme: '#87CEFA',
+            jump: function(obj, first) {
+            	param.page = obj.curr;
+              //首次不执行
+              if (!first) {
+                http.request('dianpu/list', 'get', param, function(res) {
+                  vue.dataList = res.data.list
+                })
+              }
+            }
+          });
+        })
+      }
+    });
+
+    window.xznSlide = function() {
+      jQuery(".banner").slide({mainCell:".bd ul",autoPlay:true,interTime:5000});
+      jQuery("#ifocus").slide({ titCell:"#ifocus_btn li", mainCell:"#ifocus_piclist ul",effect:"leftLoop", delayTime:200, autoPlay:true,triggerTime:0});
+      jQuery("#ifocus").slide({ titCell:"#ifocus_btn li", mainCell:"#ifocus_tx ul",delayTime:0, autoPlay:true});
+      jQuery(".product_list").slide({mainCell:".bd ul",autoPage:true,effect:"leftLoop",autoPlay:true,vis:5,trigger:"click",interTime:4000});
+    };
+  </script>
+</body>
+</html>

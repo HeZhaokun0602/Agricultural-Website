@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="utf-8">
+<title>自然风光介绍</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="../../layui/css/layui.css">
+<link rel="stylesheet" href="../../xznstatic/css/common.css"/>
+<link rel="stylesheet" href="../../xznstatic/css/style.css"/>
+<script type="text/javascript" src="../../xznstatic/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../../xznstatic/js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<style>
+	#test1 {
+		overflow: hidden;
+	}
+	#test1 .layui-carousel-ind li {
+		width: 20px;
+		height: 10px;
+		border-width: 0;
+		border-style: solid;
+		border-color: rgba(0,0,0,.3);
+		border-radius: 6px;
+		background-color: #f7f7f7;
+		box-shadow: 0 0 6px rgba(255,0,0,.8);
+	}
+	#test1 .layui-carousel-ind li.layui-this {
+		width: 30px;
+		height: 10px;
+		border-width: 0;
+		border-style: solid;
+		border-color: rgba(0,0,0,.3);
+		border-radius: 6px;
+		background-color: rgba(135, 206, 250, 1);
+		box-shadow: 0 0 6px rgba(135, 206, 250, 1);
+	}
+		.recommend {
+			padding: 10px 0;
+			display: flex;
+			justify-content: center;
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: cover;
+		}
+		.recommend .box {
+		    width: 1002px;
+			margin: 0 auto;
+		}
+		.recommend .box .title {
+			padding: 10px 5px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			box-sizing: border-box;
+		}
+		.recommend .box .title span {
+			padding: 0 10px;
+			font-size: 16px;
+			line-height: 1.4;
+		}
+	
+		.recommend .box .filter {
+			padding: 0 10px;
+			display: flex;
+			align-items: center;
+			box-sizing: border-box;
+			width: 100%;
+			flex-wrap: wrap;
+		}
+		.recommend .box .filter .item-list {
+			display: flex;
+			align-items: center;
+		}
+		.recommend .box .filter .item-list .lable {
+			font-size: 14px;
+			color: #333;
+			box-sizing: border-box;
+		}
+	
+		.recommend .box .list {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		  	  	  		.recommend .box .list .list-item {
+			flex: 0 0 25%;
+			padding: 0 5px;
+			box-sizing: border-box;
+		}
+		.recommend .box .list .list-item .list-item-body {
+			cursor: pointer;
+			border: 1px solid rgba(0, 0, 0, 3);
+			padding: 5px;
+			box-sizing: border-box;
+		}
+		.recommend .box .list .list-item-body img {
+			width: 100%;
+			height: 100px;
+			display: block;
+			margin: 0 auto;
+	    object-fit: cover;
+	    max-width: 100%;
+		}
+	
+		.recommend .box .list .list-item-body .info {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.recommend .box .list .list-item-body .info .price {
+			padding-top: 5px;
+			color: red;
+			font-size: 14px;
+			text-align: center;
+			box-sizing: border-box;
+		}
+	
+		.recommend .box .list .list-item-body .info .name {
+			padding-top: 5px;
+			color: red;
+			font-size: 14px;
+			text-align: center;
+			box-sizing: border-box;
+		}
+	
+		.recommend .box .list .list-item3 {
+			flex: 0 0 33.33%;
+		}
+	
+		.recommend .box .list .list-item5 {
+			flex: 0 0 20%;
+		}
+	
+		.recommend .box .news {
+			display: flex;
+			flex-wrap: wrap;
+            width: 100%;
+		}
+	    .recommend .box .news .list-item {
+			flex: 0 0 50%;
+			padding: 0 10px;
+			box-sizing: border-box;
+		}
+		.recommend .box .news .list-item .list-item-body {
+			cursor: pointer;
+			border: 1px solid rgba(0, 0, 0, 3);
+			padding: 10px;
+			box-sizing: border-box;
+			display: flex;
+		}
+	
+		.recommend .box .news .list-item .list-item-body img {
+			width: 120px;
+			height: 100%;
+			display: block;
+			margin: 0 auto;
+	    object-fit: cover;
+	    max-width: 100%;
+		}
+	
+		.recommend .box .news .list-item .list-item-body .item-info {
+			flex: 1;
+			display: block;
+			justify-content: space-between;
+			flex-direction: column;
+			padding-left: 10px;
+			box-sizing: border-box;
+		}
+	
+		.recommend .box .news .list-item .list-item-body .item-info .name {
+			padding-top: 5px;
+			color: red;
+			font-size: 14px;
+			box-sizing: border-box;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+		}
+	
+		.recommend .box .news .list-item .list-item-body .item-info .time {
+			padding-top: 5px;
+			color: red;
+			font-size: 14px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 5;
+			-webkit-box-orient: vertical;
+			box-sizing: border-box;
+		}
+	
+		.recommend .box .news .list-item1 {
+			flex: 0 0 100%;
+		}
+	
+		.recommend .box .news .list-item3 {
+			flex: 0 0 33.33%;
+		}
+	
+	  .index-pv2 .animation-box:hover {
+	  	transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1.03) rotate(0deg) skew(0deg, 0deg);
+	  	transition: all 1s;
+	  }
+	  
+	  .layui-laypage .layui-laypage-count {
+	    padding: 0 10px;
+	  }
+	  .layui-laypage .layui-laypage-skip {
+	    padding-left: 10px;
+	  }
+	  .introduction{
+		  cursor: pointer;
+		  background: linear-gradient(to right,#82b7a3,#67a7d1)no-repeat left bottom;
+		  background-size: 0 2px;
+		  transition:background-size .6s;
+	  }
+	  .introduction:hover{
+		  background-position-x: left;
+		  background-size: 100% 2px;
+	  }
+</style>
+<body>
+<div id="app">
+	<div class="banner">
+		<div class="layui-carousel" id="test1" :style='{"boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 auto","borderColor":"rgba(0,0,0,.3)","borderRadius":"0px","borderWidth":"0","width":"100%","borderStyle":"solid"}'>
+			<div carousel-item>
+				<div v-for="(item,index) in swiperList" :key="index">
+					<img style="width: 100%;height: 100%;object-fit:cover;" :src="item.img" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="recommend index-pv2" :style='{"padding":"10px 0 10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0 0 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(255, 0, 0, 0)","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}'>
+		<div class="box" style='width:80%'>
+			<div class="title" :style='{"backgroundColor":"rgb(119, 195, 140)","borderRadius":"4px","justifyContent":"space-between","height":"82px"}'>
+				<div style="padding-left: 30px;height:32px">
+					<svg t="1713665459148" class="icon" style="float: left" viewBox="0 0 1216 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6250" width="32" height="32"><path d="M465.035638 0h21.830293c33.693365 5.895539 61.715174 22.782218 85.913281 46.0284 15.950753 15.3508 31.485538 31.349548 45.500442 48.460211 68.106674 83.1135 120.518575 176.058232 167.298916 272.250709 18.214576 37.46107 33.397388 76.394026 50.436056 114.44705 6.487493 14.502866 20.430402 20.358408 34.125331 15.774766 9.727239-3.255745 14.782844-14.614857 10.903148-29.853665-4.079681-16.094741-8.391344-32.549455-15.670775-47.332299-15.862759-32.197482-33.37339-63.595027-50.868022-94.952574-5.327583-9.559252-5.559565-17.062666 1.53588-25.70199 17.886601-21.798295 37.709051-41.484756 61.619181-56.51558 9.119287-5.735551 19.206498-10.319193 29.389702-13.886914 15.398796-5.391578 30.461618-3.599718 42.716659 7.959377 11.335114 10.703163 22.654228 21.630308 32.437464 33.709364 44.636509 55.10769 77.625929 117.366822 109.591429 180.225906 34.14133 67.194745 55.691645 139.285107 81.881597 209.599608 10.247199 27.517848 3.359737 49.676115-15.894757 69.514564-17.406639 17.918599-39.588904 27.965813-62.635102 36.237166-38.157016 13.68693-77.889909 20.222419-117.886781 25.358017-54.411745 6.983454-109.167463 9.495257-162.739273-3.119756-47.172311-11.095132-93.896657-25.054041-139.621081-41.148782-83.417476-29.357704-168.826797-44.940486-256.859913-36.925112-74.434179 6.791469-148.340399 19.086507-222.550596 28.373781-32.341471 4.039684-64.482957 10.623169-97.56037 5.895539-48.108238-6.879462-76.618008-38.908957-76.554014-87.433163 0.039997-24.494084 6.535489-47.396293 17.094664-69.154592 32.949423-67.882691 65.010916-136.221347 99.624209-203.248105C189.505185 284.993713 246.21275 188.553255 320.038977 103.455909 359.915858 57.475505 401.07264 12.559018 465.035638 0zM0.064 918.768149c6.959456-24.638073 25.198029-37.997029 47.508285-47.068319 62.755092-25.486007 127.670016-43.020636 194.592782-53.44382 67.018759-10.439184 134.365492-13.750925 202.080197-10.87115 86.889205 3.70371 171.106619 20.4624 253.420181 48.660195 57.5395 19.710459 115.494968 38.61298 174.210377 54.347749 54.659725 14.638855 110.431364 16.806686 165.283074-2.263823 33.573374-11.679087 62.203136-30.973578 87.257176-55.915627 11.647089-11.599093 23.53416-22.702225 40.772812-25.494006 24.030121-3.887696 40.940798 6.207515 48.772185 29.445697 0.431966 1.303898 1.319897 2.455808 2.007843 3.679712v19.638465c-8.375345 15.494788-15.09482 32.22148-25.486006 46.212386-19.078508 25.653994-44.404527 44.924487-72.38634 60.203292-72.058365 39.340923-149.164335 44.292536-228.534128 32.21348-51.867944-7.903382-101.488063-24.062118-150.708214-41.572748-83.057505-29.53369-166.171005-58.69941-254.740078-67.514721-62.139141-6.175517-124.0383-4.59964-185.817469 4.383658-55.203683 8.047371-107.511592 26.381937-160.34746 43.276615-26.381937 8.447339-54.019775 16.686695-81.353638 17.662619-41.30077 1.471885-43.116628-0.247981-56.51558-35.93319C0.064 931.855126 0.064 925.319637 0.064 918.768149z" fill="#000000" p-id="6251"></path></svg>
+					<div style="float: left;margin-top: 4.3px;margin-bottom: 3.4px;">
+						<span :style='{"padding":"0 10px","boxShadow":"0 0 6px rgba(255,0,0,0)","borderColor":"rgba(255,0,0,1)","backgroundColor":"rgba(0,0,0,0)","borderRadius":"0 0 2px 0","borderWidth":"0","fontSize":"18px","borderStyle":"solid"}'>自然风光</span>
+					</div>
+				</div>
+			</div>
+			<div class="list news">
+				<div @click="jump('../news/detail.html?id='+item.id);" v-for="(item,index) in dataList" :key="index" class="list-item" :class="2=='1'?'list-item1':2=='3'?'list-item3':''">
+					<div class="list-item-body animation-box" :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
+						<img :style='{"boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"170px","borderStyle":"solid","height":"200px"}' :src="item.picture">
+						<div class="item-info">
+							<div v-if="true" :style='{"isshow":true,"padding":"0","margin":"5px 0 0 0","backgroundColor":"rgba(0,0,0,0)","color":"rgba(135, 206, 250, 1)","borderRadius":"0","textAlign":"center","width":"100%","fontSize":"16px"}' class="name">{{item.title}}</div>
+							<div v-if="item.introduction" :style='{"padding":"0","margin":"10px 0 0 0","backgroundColor":"rgba(0,0,0,0)","color":"black","borderRadius":"0","textAlign":"center","width":"100%","fontSize":"18px"}' class="time">
+								<span class="introduction">{{item.introduction}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="pager" id="pager"  :style="{textAlign:1==1?'left':1==2?'center':'right'}"></div>
+		</div>
+	</div>
+
+</div>
+
+  <script src="../../layui/layui.js"></script>
+  <script src="../../js/vue.js"></script>
+  <script src="../../js/config.js"></script>
+  <script src="../../modules/config.js"></script>
+  <script src="../../js/utils.js"></script>
+
+  <script type="text/javascript">
+    var vue = new Vue({
+      el: '#app',
+      data: {
+        swiperList: [],
+        dataList: []
+      },
+      filters: {
+        newsDesc: function(val) {
+          if (val) {
+            if (val.length > 60) {
+              return val.substring(0, 60).replace(/<[^>]*>/g).replace(/undefined/g, '');
+            } else {
+              return val.replace(/<[^>]*>/g).replace(/undefined/g, '');
+            }
+          }
+          return '';
+        }
+      },
+      methods: {
+        jump(url) {
+          jump(url)
+        }
+      }
+    });
+
+    layui.use(['layer', 'element', 'carousel', 'laypage', 'http', 'jquery'], function() {
+      var layer = layui.layer;
+			var element = layui.element;
+			var carousel = layui.carousel;
+			var laypage = layui.laypage;
+			var http = layui.http;
+			var jquery = layui.jquery;
+
+      var limit = 10;
+
+      // 获取轮播图 数据
+      http.request('config/list', 'get', {
+        page: 1,
+        limit: 5
+      }, function(res) {
+        if (res.data.list.length > 0) {
+			let swiperList = [];
+			res.data.list.forEach(element => {
+				if (element.value != null) {
+				  swiperList.push({
+					img: element.value
+				  });
+				}
+			});
+			vue.swiperList = swiperList;
+          
+			vue.$nextTick(() => {
+				carousel.render({
+					elem: '#test1',
+					width: '100%',
+					height: '450px',
+					arrow: 'hover',
+					anim: 'default',
+					autoplay: 'true',
+					interval: '3000',
+					indicator: 'inside'
+				});
+			})
+		}
+      });
+
+      // 获取列表数据
+      http.request('news/list', 'get', {
+        page: 1,
+        limit: limit
+      }, function(res) {
+        vue.dataList = res.data.list
+        // 分页
+        laypage.render({
+          elem: 'pager',
+          count: res.data.total,
+          limit: limit,
+		  groups: 3,
+		  layout: ["prev","page","next"],
+		  theme: '#87CEFA',
+          jump: function(obj, first) {
+            //首次不执行
+            if (!first) {
+              http.request('news/list', 'get', {
+                page: obj.curr,
+                limit: obj.limit
+              }, function(res) {
+                vue.dataList = res.data.list
+              })
+            }
+          }
+        });
+      });                             
+    });
+
+    window.xznSlide = function() {
+      jQuery(".banner").slide({mainCell:".bd ul",autoPlay:true,interTime:5000});
+      jQuery("#ifocus").slide({ titCell:"#ifocus_btn li", mainCell:"#ifocus_piclist ul",effect:"leftLoop", delayTime:200, autoPlay:true,triggerTime:0});
+      jQuery("#ifocus").slide({ titCell:"#ifocus_btn li", mainCell:"#ifocus_tx ul",delayTime:0, autoPlay:true});
+      jQuery(".product_list").slide({mainCell:".bd ul",autoPage:true,effect:"leftLoop",autoPlay:true,vis:5,trigger:"click",interTime:4000});
+    };
+  </script>
+</body>
+</html>

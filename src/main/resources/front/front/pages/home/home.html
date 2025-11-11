@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="utf-8">
+	<title>首页</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="order by mobanxiu.cn" />
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="../../layui/css/layui.css">
+	<link href="https://cdn.bootcdn.net/ajax/libs/Swiper/5.4.5/css/swiper.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../xznstatic/css/common.css"/>
+	<link rel="stylesheet" href="../../xznstatic/css/style.css"/>
+	<script src="../../xznstatic/js/jquery-1.11.3.min.js"></script>
+	<script src="../../xznstatic/js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<style>
+	html::after {
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		content: '';
+		display: block;
+		background-attachment: fixed;
+		background-size: cover;
+		background-position: center;
+	}
+	#test1 {
+		overflow: hidden;
+	}
+	#test1 .layui-carousel-ind li {
+		width: 20px;
+		height: 10px;
+		border-width: 0;
+		border-style: solid;
+		border-color: rgba(0,0,0,.3);
+		border-radius: 6px;
+		background-color: #f7f7f7;
+		box-shadow: 0 0 6px rgba(255,0,0,.8);
+	}
+	#test1 .layui-carousel-ind li.layui-this {
+		width: 30px;
+		height: 10px;
+		border-width: 0;
+		border-style: solid;
+		border-color: rgba(0,0,0,.3);
+		border-radius: 6px;
+		background-color: rgba(135, 206, 250, 1);
+		box-shadow: 0 0 6px rgba(135, 206, 250, 1);
+	}
+
+	.recommend {
+		padding: 10px 0;
+		display: flex;
+		justify-content: center;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+	}
+
+	.recommend .box {
+		width: 1014px;
+	}
+
+	.recommend .box .title {
+		padding: 10px 5px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	.recommend .box .title span {
+		padding: 0 10px;
+		line-height: 1.4;
+	}
+
+	.recommend .box .list {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.index-pv1 .box .list .list-item {
+		flex: 0 0 ${var1}%;
+		padding: 0 5px;
+		box-sizing: border-box;
+	}
+
+	.recommend .box .list .list-item-body {
+		border: 1px solid rgba(0, 0, 0, 3);
+		padding: 5px;
+		box-sizing: border-box;
+		cursor: pointer;
+	}
+
+	.recommend .box .list img {
+		width: 100%;
+		height: 100px;
+		display: block;
+		margin: 0 auto;
+		object-fit: cover;
+		max-width: 100%;
+	}
+
+	.recommend .box .list .name {
+		padding-top: 5px;
+		color: red;
+		font-size: 14px;
+		text-align: center;
+		box-sizing: border-box;
+	}
+
+	.recommend .box .list .list-item3 {
+		flex: 0 0 33.33%;
+	}
+
+	.recommend .box .list .list-item5 {
+		flex: 0 0 20%;
+	}
+
+	/* 商品推荐-样式4-开始 */
+	.recommend .list-4{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.recommend .list-4 .list-4-body {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.recommend .list-4 .list-4-item {
+		position: relative;
+		z-index: 1;
+	}
+	.recommend .list-4 .list-4-item.item-1 {
+		width: 400px;
+		height: 400px;
+		margin-right: 20px;
+	}
+
+	.recommend .list-4 .list-4-item.item-2 {
+		width: 220px;
+		height: 190px;
+		margin-right: 20px;
+		margin-bottom: 20px;
+	}
+
+	.recommend .list-4 .list-4-item.item-3 {
+		width: 220px;
+		height: 190px;
+		margin-right: 20px;
+		margin-bottom: 0;
+	}
+
+	.recommend .list-4 .list-4-item.item-4 {
+		width: 190px;
+		height: 190px;
+		margin-right: 0;
+		margin-bottom: 20px;
+	}
+
+	.recommend .list-4 .list-4-item.item-5 {
+		width: 190px;
+		height: 190px;
+		margin-right: 0;
+		margin-bottom: 0;
+	}
+
+	.recommend .list-4 .list-4-item img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.recommend .list-4 .list-4-item .list-4-item-center {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: auto;
+		display: flex;
+		flex-wrap: wrap;
+		background-color: rgba(0,0,0,.3);
+	}
+	.recommend .list-4 .list-4-item .list-4-item-center .list-4-item-title {
+		width: 50%;
+		text-align: left;
+		line-height: 44px;
+		color: #fff;
+		font-size: 14px;
+		padding: 0 6px;
+	}
+
+	.recommend .list-4 .list-4-item .list-4-item-center .list-4-item-price {
+		width: 50%;
+		text-align: right;
+		line-height: 44px;
+		color: #fff;
+		font-size: 14px;
+		padding: 0 6px;
+	}
+	/* 商品推荐-样式4-结束 */
+	/* 商品推荐-样式5-开始 */
+	.recommend #recommend-five-swiper.swiper-container-horizontal>.swiper-pagination-bullets {
+		line-height: 1;
+	}
+	.recommend #recommend-five-swiper .swiper-slide.swiper-slide-prev {
+		z-index: 5;
+	}
+	.recommend #recommend-five-swiper .swiper-slide.swiper-slide-next {
+		z-index: 5;
+	}
+	.recommend #recommend-five-swiper .swiper-slide.swiper-slide-active {
+		z-index: 9;
+	}
+
+	.recommend #lists-five-swiper.swiper-container-horizontal>.swiper-pagination-bullets {
+		line-height: 1;
+	}
+	.recommend #lists-five-swiper .swiper-slide.swiper-slide-prev {
+		z-index: 5;
+	}
+	.recommend #lists-five-swiper .swiper-slide.swiper-slide-next {
+		z-index: 5;
+	}
+	.recommend #lists-five-swiper .swiper-slide.swiper-slide-active {
+		z-index: 9;
+	}
+	/* 商品推荐-样式5-结束 */
+
+	.news {
+		padding: 10px 0;
+		display: flex;
+		justify-content: center;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+		width: 100%;
+	}
+
+	.news .box {
+		width: 1014px;
+	}
+
+	.news .box .title {
+		padding: 10px 5px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	.news .box .title span {
+		padding: 0 10px;
+		line-height: 1.4;
+	}
+
+	.news .box .list {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.index-pv2 .box .list .list-item {
+		flex: 0 0 33%;
+		padding: 0 10px;
+		box-sizing: border-box;
+	}
+
+	.news .box .list .list-item .list-item-body {
+		border: 1px solid rgba(0, 0, 0, 3);
+		padding: 10px;
+		box-sizing: border-box;
+		display: flex;
+		cursor: pointer;
+	}
+
+	.news .box .list .list-item .list-item-body img {
+		width: 120px;
+		height: 100%;
+		display: block;
+		margin: 0 auto;
+		object-fit: cover;
+		max-width: 100%;
+	}
+
+	.news .box .list .list-item .list-item-body .item-info {
+		flex: 1;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+		padding-left: 10px;
+		box-sizing: border-box;
+	}
+
+	.news .box .list .list-item .list-item-body .item-info .name {
+		padding-top: 5px;
+		color: red;
+		font-size: 14px;
+		box-sizing: border-box;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+	}
+
+	.news .box .list .list-item .list-item-body .item-info .time {
+		padding-top: 5px;
+		color: red;
+		font-size: 14px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+	}
+
+	.news .box .list .list-item1 {
+		flex: 0 0 100%;
+	}
+
+	.news .box .list .list-item3 {
+		flex: 0 0 33.33%;
+	}
+
+	.lists {
+		padding: 10px 0;
+		display: flex;
+		justify-content: center;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+	}
+
+	.lists .box {
+		width: 1014px;
+		overflow: hidden;
+	}
+
+	.lists .box .title {
+		padding: 10px 5px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	.lists .box .title span {
+		padding: 0 10px;
+		line-height: 1.4;
+	}
+
+	.lists .box .swiper-slide {
+		box-sizing: border-box;
+		cursor: pointer;
+	}
+
+	.lists .box .swiper-slide .img-box {
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.lists .box .swiper-slide .img-box img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		max-width: 100%;
+	}
+
+	.index-pv3 .box .list .list-item {
+		flex: 0 0 ${var3}%;
+		padding: 0 10px;
+		box-sizing: border-box;
+	}
+
+	.index-pv1 .animation-box:hover {
+		transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1.1) rotate(0deg) skew(0deg, 0deg);
+		transition: all 1.3s;
+		z-index: 2;
+		position: relative;
+	}
+	.index-pv2 .animation-box:hover {
+		transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1.02) rotate(0deg) skew(0deg, 0deg);
+		transition: all 1.1s;
+		z-index: 2;
+		position: relative;
+	}
+	.index-pv3 .animation-box:hover {
+		transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1.1) rotate(0deg) skew(0deg, 0deg);
+		transition: all 1.1s;
+		z-index: 2;
+		position: relative;
+	}
+
+	#new-list-6 .swiper-wrapper {
+		-webkit-transition-timing-function: linear;
+		-moz-transition-timing-function: linear;
+		-ms-transition-timing-function: linear;
+		-o-transition-timing-function: linear;
+		transition-timing-function: linear;
+	}
+	.color1{
+		background-image: -moz-linear-gradient(45deg, rgb(255, 220, 173), rgb(255, 163, 200));
+		background-image: -webkit-linear-gradient(45deg, rgb(255, 220, 173), rgb(255, 163, 200));
+		background-image: linear-gradient(45deg, rgb(255, 220, 173), rgb(255, 163, 200));
+	}
+	.color2{
+		background-image: -moz-linear-gradient(0deg, rgb(212, 255, 194), rgb(255, 193, 179));
+		background-image: -webkit-linear-gradient(0deg, rgb(212, 255, 194), rgb(255, 193, 179));
+		background-image: linear-gradient(0deg, rgb(212, 255, 194), rgb(255, 193, 179));
+	}
+	.color3{
+		background-image: -moz-linear-gradient(0deg, rgb(237, 204, 255), rgb(153, 253, 255));
+		background-image: -webkit-linear-gradient(0deg, rgb(237, 204, 255), rgb(153, 253, 255));
+		background-image: linear-gradient(0deg, rgb(237, 204, 255), rgb(153, 253, 255));
+	}
+	.color4{
+		background-image: -moz-linear-gradient(135deg, rgb(153, 240, 255), rgb(229, 204, 255));
+		background-image: -webkit-linear-gradient(135deg, rgb(153, 240, 255), rgb(229, 204, 255));
+		background-image: linear-gradient(135deg, rgb(153, 240, 255), rgb(229, 204, 255));
+	}
+	.color5{
+		background-image: -moz-linear-gradient(135deg, rgb(183, 173, 255), rgb(236, 255, 184));
+		background-image: -webkit-linear-gradient(135deg, rgb(183, 173, 255), rgb(236, 255, 184));
+		background-image: linear-gradient(135deg, rgb(183, 173, 255), rgb(236, 255, 184));
+	}
+</style>
+<body>
+<div id="app">
+	<div class="banner">
+		<div class="layui-carousel" id="test1" :style='{"boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 auto","borderColor":"rgba(0,0,0,.3)","borderRadius":"0px","borderWidth":"0","width":"100%","borderStyle":"solid"}'>
+			<div carousel-item>
+				<div v-for="(item,index) in swiperList" :key="index">
+					<img style="width: 100%;height: 100%;object-fit:cover;" :src="item.img" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="content">
+		<!-- 商品推荐 -->
+		<div class="recommend index-pv1" :style='{"padding":"10px 0 10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0 0 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(255, 0, 0, 0)","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}'>
+			<div class="box" style='width:80%'>
+				<div class="title color1" :style='{"padding":"10px 0 10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0 10px 0","borderColor":"rgba(135, 206, 250, 1)","color":"rgba(8, 8, 8, 1)","borderRadius":"32px","alignItems":"center","borderWidth":"0 10px","fontSize":"20px","borderStyle":"solid"}'>
+					<span>Recommend</span>
+					<span><svg t="1711470257385" class="icon" style="background: rgba(0,0,0,0);float: left;width: 35px;height:35px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2056" width="32" height="32"><path d="M512 512m-512 0a512 512 0 1 0 1024 0 512 512 0 1 0-1024 0Z" fill="#F0F0F0" p-id="2057"></path><path d="M678.837677 227.505548c49.804387 32.829935-48.355097 108.003097-108.003096 108.003097s-108.003097-48.355097-108.003097-108.003097c0-59.652129 149.623742-232.832 142.220387-173.646451-11.453935 91.664516-11.453935 117.446194 73.785806 173.646451z" fill="#85CC85" p-id="2058"></path><path d="M570.834581 360.282839c-73.211871 0-132.77729-59.56129-132.777291-132.777291 0-38.924387 39.779097-96.396387 63.492129-127.194838 29.287226-38.036645 70.061419-83.373419 97.994323-83.37342 8.844387 0 16.850581 3.550968 22.540387 9.996387 6.56929 7.440516 9.108645 17.536 7.547871 29.99742-10.607484 84.901161-12.519226 100.203355 62.843871 149.888 21.008516 13.848774 29.349161 36.129032 22.31329 59.590193-14.501161 48.350968-93.390452 93.873548-143.95458 93.873549z m5.483354-271.587097c-36.232258 37.805419-88.712258 110.711742-88.712258 138.809806 0 45.890065 37.338839 83.228903 83.228904 83.228904 25.397677 0 65.969548-20.352 86.808774-43.553033 8.823742-9.818839 10.178065-15.979355 10.062451-17.094193-0.103226 0.222968-0.805161-0.780387-2.498064-1.895226-82.56-54.433032-94.769548-89.273806-88.889807-159.496258z" fill="#666666" p-id="2059"></path><path d="M769.548387 187.437419c121.488516 65.713548 201.356387 181.698065 201.356387 332.940387 0 242.023226-204.473806 438.210065-456.691613 438.210065-252.230194 0.004129-456.699871-196.186839-456.699871-438.210065 0-150.837677 79.430194-266.595097 200.357162-332.403612 73.083871-39.774968 151.275355-31.281548 256.334451-1.271742 90.950194 25.988129 182.457806-38.69729 255.343484 0.734967z" fill="#FF7878" p-id="2060"></path><path d="M514.209032 983.362065c-128.417032 0.004129-249.195355-48.028903-340.087742-135.242323-91.173161-87.485935-141.386323-203.875097-141.386322-327.741936 0-151.312516 77.741419-280.402581 213.28929-354.163612 36.954839-20.112516 76.733935-29.890065 121.620645-29.890065 41.765161 0 89.063226 8.192 153.360516 26.557936 12.725677 3.633548 26.273032 5.404903 41.422452 5.404903h0.012387c24.580129 0 50.114065-4.744258 74.809807-9.335742 24.807226-4.612129 50.460903-9.381161 75.425032-9.381161 26.202839 0 48.660645 5.260387 68.661677 16.08258 136.216774 73.682581 214.342194 202.974968 214.342194 354.73342 0 255.281548-215.985548 462.976-481.469936 462.976zM367.644903 185.872516c-36.90529 0-68.025806 7.580903-97.936516 23.861678-120.860903 65.775484-187.425032 176.094968-187.425032 310.643612 0 110.241032 44.8 213.937548 126.141935 291.988646 81.62271 78.319484 190.220387 121.447226 305.783742 121.447225 238.162581 0 431.917419-185.467871 431.91742-413.435871 0-134.945032-66.894452-245.446194-188.366452-311.151483-12.75871-6.899613-27.086452-10.116129-45.089032-10.116129-20.39329 0-42.727226 4.149677-66.365936 8.547096-26.900645 5.000258-54.722065 10.173935-83.868903 10.173936h-0.016516c-19.815226 0-37.813677-2.39071-55.027613-7.312516-59.676903-17.044645-102.779871-24.646194-139.747097-24.646194z" fill="#666666" p-id="2061"></path><path d="M668.890839 390.746839a24.774194 24.774194 0 0 1-24.774194-24.774194c0-119.762581-96.251871-148.236387-100.347871-149.388387-13.122065-3.695484-20.859871-17.308903-17.238709-30.447484 3.617032-13.138581 17.123097-20.90529 30.261677-17.358451 47.343484 12.75871 136.869161 70.395871 136.869161 197.194322a24.770065 24.770065 0 0 1-24.770064 24.774194z" fill="#666666" p-id="2062"></path><path d="M506.202839 938.351484c-128.417032 0.004129-249.195355-48.028903-340.087742-135.242323C74.941935 715.627355 24.732903 599.234065 24.732903 475.371355h49.548387c0 110.241032 44.795871 213.933419 126.137807 291.984516 81.62271 78.319484 190.216258 121.447226 305.783742 121.447226 238.162581 0 431.921548-185.463742 431.921548-413.431742h49.548387c0 255.285677-215.985548 462.980129-481.469935 462.980129z" fill="#666666" opacity=".15" p-id="2063"></path><path d="M253.956129 394.32671a24.774194 24.774194 0 0 1-24.080516-30.695226c20.52129-83.489032 93.935484-94.583742 97.048774-95.013161a24.774194 24.774194 0 0 1 7.023484 49.048774c-2.258581 0.371613-43.697548 7.923613-55.956645 57.794064a24.774194 24.774194 0 0 1-24.035097 18.865549z" fill="#FFFFFF" opacity=".67" p-id="2064"></path></svg>
+						<span style="line-height: 32px;float: left;padding: 0">商品推荐</span>
+					</span>
+				</div>
+				<div class="list-4" style="flex-direction: column;align-items: center;">
+					<div class="list-4-body" style="display: flex;flex-direction: row;">
+						<div v-if="shangpinRecommend.length>0" @click="jump('../shangpin/detail.html?id='+shangpinRecommend[0].id)" class="list-4-item animation-box item-1" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 20px 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"390px","borderStyle":"solid","height":"260px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="shangpinRecommend[0].tupian?shangpinRecommend[0].tupian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"16px","borderStyle":"solid"}' class="list-4-item-title">{{shangpinRecommend[0].shangpinmingcheng}}</div>
+							</div>
+						</div>
+						<div v-if="shangpinRecommend.length>1" @click="jump('../shangpin/detail.html?id='+shangpinRecommend[1].id)" class="list-4-item animation-box item-2" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 0 20px 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"390px","borderStyle":"solid","height":"260px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="shangpinRecommend[1].tupian?shangpinRecommend[1].tupian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"16px","borderStyle":"solid"}' class="list-4-item-title">{{shangpinRecommend[1].shangpinmingcheng}}</div>
+							</div>
+						</div>
+					</div>
+					<div class="list-4-body" style="display: flex;flex-direction: row;">
+						<div v-if="shangpinRecommend.length>2" @click="jump('../shangpin/detail.html?id='+shangpinRecommend[2].id)" class="list-4-item animation-box item-3" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"280px","borderStyle":"solid","height":"190px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="shangpinRecommend[2].tupian?shangpinRecommend[2].tupian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"16px","borderStyle":"solid"}' class="list-4-item-title">{{shangpinRecommend[2].shangpinmingcheng}}</div>
+							</div>
+						</div>
+						<div v-if="shangpinRecommend.length>3" @click="jump('../shangpin/detail.html?id='+shangpinRecommend[3].id)" class="list-4-item animation-box item-4" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"200px","borderStyle":"solid","height":"190px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="shangpinRecommend[3].tupian?shangpinRecommend[3].tupian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"16px","borderStyle":"solid"}' class="list-4-item-title">{{shangpinRecommend[3].shangpinmingcheng}}</div>
+							</div>
+						</div>
+						<div v-if="shangpinRecommend.length>4" @click="jump('../shangpin/detail.html?id='+shangpinRecommend[4].id)" class="list-4-item animation-box item-5" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"280px","borderStyle":"solid","height":"190px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="shangpinRecommend[4].tupian?shangpinRecommend[4].tupian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"16px","borderStyle":"solid"}' class="list-4-item-title">{{shangpinRecommend[4].shangpinmingcheng}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div style="text-align: center;">
+					<button @click="jump('../shangpin/list.html')" style="display: block;cursor: pointer;" type="button" :style='{"padding":"0 15px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"4px auto","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"rgba(160, 67, 26, 1)","borderRadius":"6px","borderWidth":"0","width":"auto","fontSize":"17px","borderStyle":"solid","height":"34px","font-weight":"1000"}'>查看更多<i v-if="true" :style='{"isshow":true,"padding":"0 0 0 1px","fontSize":"14px","color":"rgba(160, 67, 26, 1)"}' class="layui-icon layui-icon-next"></i></el-button>
+				</div>
+			</div>
+		</div>
+
+		<!-- 自然风光介绍 -->
+		<!-- 样式二 -->
+		<div class="news index-pv2" style="display: flex;justify-content: center;width:100%" :style='{"padding":"10px 0 10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0 0 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(255, 0, 0, 0)","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}'>
+			<div class="box" style='width:80%'>
+				<div class="title color2" :style='{"padding":"10px 0 10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0 10px 0","borderColor":"rgba(135, 206, 250, 1)","backgroundColor":"#f7f7f7","color":"rgba(21, 21, 21, 1)","borderRadius":"32px","alignItems":"center","borderWidth":"0 10px","fontSize":"20px","borderStyle":"solid"}'>
+					<span>HOME NEWS</span>
+					<span>
+						<svg t="1711470662497" class="icon" style="rgba(0,0,0,0);float: left;width:35px;height:35px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2315" width="32" height="32"><path d="M511.995915 512.143751m-509.289267 0a509.289267 509.289267 0 1 0 1018.578533 0 509.289267 509.289267 0 1 0-1018.578533 0Z" fill="#F0F0F0" p-id="2316"></path><path d="M696.736489 295.153666c-64.449735-89.404909-34.372918-128.098572-34.372918-128.098572 7.273801-18.638344 9.992748-52.107685 9.992748-52.107685V24.643029H353.951955v90.30438s10.916862 33.457019 18.198877 52.107685c0 0 14.420279 33.7897-42.591369 128.098572-137.434173 227.385336-46.567111 610.670688-46.56711 610.670688h1.334831c0 0.205359-0.036965 0.398396-0.036965 0.591433 0 51.335537 102.757324 92.945291 229.508744 92.945291s229.504637-41.609755 229.504636-92.945291c0-0.193037-0.032857-0.386074-0.041071-0.591433h0.041071v0.591433c0-0.012322 74.097481-443.894882-46.56711-611.262121z" fill="#FFFFFF" p-id="2317"></path><path d="M513.798963 1024c-118.319397 0-243.777058-38.011872-253.539804-108.667544a24.671779 24.671779 0 0 1-1.244473-3.827884c-3.803241-16.046719-91.569389-395.771154 49.458559-629.099566 44.180844-73.087117 40.927964-103.862153 40.369389-107.30807-7.43398-19.201027-17.866196-51.134285-18.313878-52.506081a24.651243 24.651243 0 0 1-1.215723-7.643446V24.643029a24.643029 24.643029 0 0 1 24.643029-24.643029h318.404364a24.643029 24.643029 0 0 1 24.643029 24.643029v90.30438c0 0.665362-0.02875 1.330724-0.082143 1.996085-0.308038 3.795026-3.25288 37.683299-11.594546 59.065234-1.129472 2.895556-1.121258 3.647168-2.96127 5.610396-2.016621 4.575389-12.107942 34.656313 34.364704 99.122477 121.8721 169.042965 57.253971 590.282689 51.224643 627.641521l-0.053393 0.591433c-2.891449 74.734093-132.279673 115.025445-254.102487 115.025445z m-204.853393-117.074924c0.9734 27.830194 80.566276 67.788866 204.853393 67.788866 124.172116 0 203.732135-39.884742 204.849286-67.706722l-0.008214-0.213573a24.708744 24.708744 0 0 1 0.817327-7.343623c5.984149-38.328124 65.38617-439.94789-42.710477-589.884293-63.89116-88.624547-45.207637-138.551324-36.644184-153.386427 3.844313-11.249543 6.624868-31.111824 7.610589-42.275117V49.286058H378.594984v61.710252c2.994128 9.06042 10.888112 32.660228 16.4369 46.903899 4.632889 11.463116 13.660452 53.980555-44.382095 150.002117C230.079662 507.383539 294.213145 840.393005 305.413402 893.063372c2.254837 3.721097 3.556811 8.091128 3.556811 12.756875 0 0.332681-0.012322 0.714648-0.024643 1.104829z" fill="#666666" p-id="2318"></path><path d="M353.951955 24.643029h318.404364v90.30438H353.951955z" fill="#A7DFC1" p-id="2319"></path><path d="M672.356319 139.590438H353.951955a24.643029 24.643029 0 0 1-24.643029-24.643029V24.643029a24.643029 24.643029 0 0 1 24.643029-24.643029h318.404364a24.643029 24.643029 0 0 1 24.643029 24.643029v90.30438a24.643029 24.643029 0 0 1-24.643029 24.643029z m-293.761335-49.286058h269.118306V49.286058H378.594984v41.018322z" fill="#666666" p-id="2320"></path><path d="M669.583978 258.152158c-58.116477-89.413124-30.992716-128.098572-30.992716-128.098572 6.559153-18.642451 9.00292-52.107685 9.00292-52.107685V41.030643h-287.091288v36.911151s9.840783 33.457019 16.404043 52.107685c0 0 13.003305 33.7897-38.402054 128.098572-123.921579 227.377122-41.987614 610.670688-41.987614 610.670688h1.203401c0 0.197144-0.032857 0.390181-0.032857 0.591433 0 51.335537 92.653682 92.945291 206.939836 92.945291s206.935729-41.609755 206.935729-92.945291c0-0.201251-0.02875-0.394288-0.036965-0.591433h0.036965v0.591433c0.008214-0.008214 66.819573-443.890775-41.9794-611.258014z" fill="#FFFFFF" opacity=".15" p-id="2321"></path><path d="M504.627649 986.994385c-126.447489 0-223.117985-46.374073-231.057148-109.185048a24.75803 24.75803 0 0 1-1.150008-3.844312c-0.854292-3.996278-20.983539-99.315514-26.002502-224.226921-6.80969-169.404396 16.892796-305.121771 70.446205-403.38585 40.669212-74.610878 37.050794-105.714487 36.533291-108.872902-6.686475-19.139419-16.13297-51.212322-16.535473-52.584117a24.606064 24.606064 0 0 1-1.00215-6.953441V41.030643a24.643029 24.643029 0 0 1 24.64303-24.643029h287.091288a24.643029 24.643029 0 0 1 24.643029 24.643029v36.915258c0 0.599647-0.020536 1.199294-0.065715 1.798941-0.27518 3.762169-2.90377 37.350618-10.337751 58.486122-0.9734 2.764126-0.961078 3.474667-2.595732 5.421467-1.868763 4.579496-11.63151 35.481855 31.000931 101.069276 47.877298 73.649799 70.006738 202.294625 65.768137 382.37356-2.731269 116.224739-15.976897 218.316701-19.739066 243.181518a28.113589 28.113589 0 0 1-0.115001 1.679833c-2.480732 65.768137-101.18017 115.037767-231.525365 115.037767z m-182.288593-117.083138c0.854292 27.826087 71.682464 67.79708 182.288593 67.79708 110.536307 0 181.343944-39.9176 182.284486-67.743687l-0.008215-0.135537a24.762137 24.762137 0 0 1 0.706434-6.953441c5.384502-37.69562 59.816846-439.75896-38.685449-591.288946-26.6309-40.973143-40.517247-78.130724-41.268859-110.437735-0.484646-21.082111 4.768426-34.590598 8.345773-41.268859 3.922349-12.674731 6.263437-34.212739 6.949334-42.870656v-11.335794h-237.80523v8.690775c2.62859 8.822204 9.865426 32.861479 14.94189 47.318723 4.082528 11.183828 12.034013 52.900369-39.946351 148.260677-109.324691 200.598364-50.896069 534.930339-40.886892 586.881951a24.532135 24.532135 0 0 1 3.084486 13.085449z" fill="#666666" opacity=".15" p-id="2322"></path><path d="M508.032494 487.500722s-135.53666 221.787261 8.214343 221.787261c0 0 122.155495-13.229199-8.214343-221.787261z" fill="#DEDEDE" p-id="2323"></path><path d="M366.191326 218.33313s169.211359 45.178887 292.019894 0" fill="#FFFFFF" p-id="2324"></path><path d="M527.49638 263.113621c-87.597754 0-162.923279-19.706209-167.662955-20.971218a24.643029 24.643029 0 0 1-17.451372-30.167174 24.643029 24.643029 0 0 1 30.15896-17.455479c2.065907 0.546254 163.453104 42.509225 277.160148 0.685897a24.634815 24.634815 0 0 1 31.633435 14.617424 24.638922 24.638922 0 0 1-14.621531 31.637542c-44.189058 16.256185-93.380651 21.653008-139.216685 21.653008z" fill="#666666" p-id="2325"></path></svg>
+						<span style="float: left;line-height: 32px;padding: 0">自然风光介绍</span>
+					</span>
+				</div>
+				<div class="list">
+					<div v-for="(item,index) in newsList" :key="index" class="list-item" @click="jump('../news/detail.html?id='+item.id)" :class="3=='1'?'list-item1':3=='3'?'list-item3':''">
+						<div class="list-item-body animation-box" :style='{"padding":"6px","boxShadow":"0 0 2px rgba(160, 67, 26, 1)","margin":"0 0 10px 0","borderColor":"rgba(160, 67, 26, 1)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
+							<img :style='{"boxShadow":"0 0 3px rgba(160, 67, 26, 1)","borderColor":"rgba(0, 0, 0, 0.43)","borderRadius":"0","borderWidth":"1px","width":"170px","borderStyle":"solid","height":"210px"}' :src="item.picture" alt="" />
+							<div class="item-info">
+								<div v-if='true' :style='{"isshow":true,"padding":"0","margin":"5px 0","backgroundColor":"rgba(0,0,0,0)","color":"rgba(160, 67, 26, 1)","borderRadius":"0","textAlign":"center","fontSize":"15px"}' class="name">{{item.title}}</div>
+								<div :style='{"padding":"0","margin":"0","backgroundColor":"rgba(0,0,0,0)","color":"#999","borderRadius":"0","textAlign":"center","fontSize":"13px"}' class="time">{{item.addtime}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div style="text-align: center;">
+					<button @click="jump('../news/list.html')" style="display: block;cursor: pointer;" type="button" :style='{"padding":"0 15px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"4px auto","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"rgba(160, 67, 26, 1)","borderRadius":"6px","borderWidth":"0","width":"auto","fontSize":"17px","borderStyle":"solid","height":"34px","font-weight":"1000"}'>查看更多<i v-if="true" :style='{"isshow":true,"padding":"0 0 0 1px","fontSize":"14px","color":"rgba(160, 67, 26, 1)"}' class="layui-icon layui-icon-next"></i></el-button>
+				</div>
+			</div>
+		</div>
+
+		<!-- 特价商品展示 -->
+		<div class="recommend index-pv3" :style='{"padding":"10px 0 10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0 0 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(255, 0, 0, 0)","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
+			<div class="box" style='width:80%'>
+				<div class="title color3" :style='{"isshow":true,"padding":"10px 0 10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0 10px 0","borderColor":"rgba(135, 206, 250, 1)","backgroundColor":"#f7f7f7","color":"rgba(23, 22, 22, 1)","borderRadius":"32px","alignItems":"center","borderWidth":"0 10px","fontSize":"20px","borderStyle":"solid"}'>
+					<span>DATA SHOW</span>
+					<span>
+						<svg t="1711470910512" class="icon" style="float: left;rgba(0,0,0,0);" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2576" width="35" height="35"><path d="M512 516.712849m-499.69501 0a499.69501 499.69501 0 1 0 999.39002 0 499.69501 499.69501 0 1 0-999.39002 0Z" fill="#F0F0F0" p-id="2577"></path><path d="M738.272862 602.263591a214.981689 527.919719 27.526 1 0-381.292042-198.708038 214.981689 527.919719 27.526 1 0 381.292042 198.708038Z" fill="#FFDE00" p-id="2578"></path><path d="M348.744804 1005.765162c-20.447197 0-39.375161-4.460987-56.255986-13.258037-60.225338-31.38407-87.309614-113.446887-76.259907-231.076704 10.352552-110.231107 52.721853-241.296273 119.294125-369.057004C455.901175 161.36119 624.894804 0.020149 746.493973 0.020149c20.443168 0 39.375161 4.460987 56.255987 13.262067 60.225338 31.38407 87.305584 113.446887 76.259906 231.076704-10.352552 110.231107-52.721853 241.296273-119.298154 369.052973-120.37411 231.012227-289.371769 392.353269-410.966908 392.353269z m397.745139-957.387431c-101.014958 0-259.257085 157.492584-368.085822 366.340919-63.751412 122.344682-104.250886 247.083063-114.031207 351.233205-8.958242 95.345032 9.433758 162.292074 50.457106 183.666125 9.913304 5.166202 21.325694 7.7896 33.914784 7.7896 101.014958 0 259.253055-157.492584 368.077763-366.340919 63.755442-122.344682 104.254916-247.079034 114.039267-351.229175 8.954212-95.349062-9.437788-162.292074-50.457107-183.674185-9.917334-5.166202-21.329723-7.785571-33.914784-7.78557z" fill="#666666" p-id="2579"></path><path d="M372.544794 237.403488C336.220191 382.782497 224.639101 635.418623 224.639101 635.418623s-113.023758 276.291043 104.045367 347.944889c-52.109324-103.807609-93.551771-383.677112-35.172081-519.09849" fill="#76B576" p-id="2580"></path><path d="M328.680438 1007.538273a24.146552 24.146552 0 0 1-7.576021-1.221029c-60.922493-20.108694-104.045367-56.852397-128.171771-109.211568-53.140952-115.316713 6.753942-264.54821 9.328984-270.846785 0.084626-0.20955 0.169252-0.415069 0.257907-0.612529 0.527904-1.19685 25.742353-58.444167 55.836888-133.402449 3.667117-13.419229 7.966912-26.00026 12.951772-37.561752a24.142523 24.142523 0 0 1 4.722924-7.140802c28.410079-73.052187 57.726863-154.667695 73.052186-216.005258a24.158642 24.158642 0 0 1 29.316784-17.5941 24.174761 24.174761 0 0 1 17.5941 29.316784c-19.298705 77.239147-58.77864 182.598228-92.314623 266.119831-35.550882 135.288394-0.709245 368.871633 46.604619 463.128619a24.174761 24.174761 0 0 1-3.308464 26.645028 24.114314 24.114314 0 0 1-18.295285 8.38601z m-87.366031-346.945499c-12.750282 38.742482-39.741873 139.926692-4.39651 216.420327 10.727324 23.211639 26.109064 42.123483 46.499844 57.021648-23.542083-74.301424-40.39067-176.682484-42.103334-273.441975z" fill="#666666" p-id="2581"></path><path d="M328.688497 983.355453S278.271689 883.42048 578.145112 677.900758c232.059975-139.072375 254.74774-272.15244 307.380938-340.050514-93.942662 398.345579-272.442585 544.341148-272.442585 544.341148-14.938463 28.881566-162.97714 163.9725-284.394968 101.164061z" fill="#76B576" p-id="2582"></path><path d="M397.787452 1024c-28.631718 0-55.619278-6.451707-80.209109-19.169751a24.158642 24.158642 0 0 1-10.477476-10.586281c-6.133353-12.161932-51.037398-124.915693 257.375169-336.286682 0.40701-0.278056 0.818049-0.544023 1.241178-0.793871 170.516892-102.191659 223.629636-199.930392 262.412416-271.298122 13.100875-24.106254 24.416549-44.928223 38.287116-62.824558a24.170731 24.170731 0 0 1 29.530363-7.00379 24.18685 24.18685 0 0 1 13.112964 27.370391c-88.740192 376.278402-250.875104 531.381316-277.250135 554.584896-23.973271 37.090265-127.805058 126.007768-234.022486 126.007768z m-47.99893-57.509254c14.930403 6.076936 31.029448 9.151672 47.99893 9.151672 92.076865 0 184.496263-86.902604 193.825247-104.561181a25.182211 25.182211 0 0 1 6.161561-7.604229c1.39834-1.152522 120.499034-102.062706 212.672615-356.798357-42.804519 58.154022-107.998599 124.810918-219.237156 191.580649-227.034816 155.735592-242.440736 243.698033-241.421197 268.231446z" fill="#666666" p-id="2583"></path><path d="M296.115636 914.280677a24.174761 24.174761 0 0 1-21.551362-35.099545c3.356822-6.633048 84.633827-163.803248 290.423546-274.933 90.235247-48.728323 160.136132-126.58 202.15484-225.136781 39.411429-92.443577 52.915284-197.56087 39.044718-303.987848a24.174761 24.174761 0 1 1 47.950572-6.250217c32.113464 246.418147-72.367121 473.263562-266.176249 577.921458-192.596158 104.005069-269.500832 252.732841-270.254404 254.223866a24.174761 24.174761 0 0 1-21.591661 13.262067z" fill="#666666" opacity=".15" p-id="2584"></path><path d="M382.869138 981.324434c-40.970961 0-65.431838-12.758342-66.971221-13.58848a24.178791 24.178791 0 0 1-9.856887-32.742113 24.18685 24.18685 0 0 1 32.516444-9.977781c2.228479 1.108195 42.969741 20.572121 110.150511-5.158142 98.625288-37.78339 250.55675-170.952111 414.303581-590.792634a24.178791 24.178791 0 0 1 45.053147 17.569921c-94.651906 242.690583-248.767519 547.202305-445.445863 619.654051-30.715124 11.315674-57.638208 15.035178-79.749712 15.035178z" fill="#666666" opacity=".15" p-id="2585"></path></svg>
+						<span style="float: left;line-height: 32px;padding: 0;">商品展示</span>
+					</span>
+				</div>
+				<div class="list-4">
+					<div v-if="shangpinList.length>0" class="list-4-item animation-box item-1" @click="jump('../shangpin/detail.html?id='+shangpinList[0].id)" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"250px","borderStyle":"solid","height":"400px"}'>
+						<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="shangpinList[0].tupian?shangpinList[0].tupian.split(',')[0]:''" alt="" />
+						<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+							<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{shangpinList[0].shangpinmingcheng}}</div>
+						</div>
+					</div>
+					<div class="list-4-body">
+						<div v-if="shangpinList.length>1" @click="jump('../shangpin/detail.html?id='+shangpinList[1].id)" class="list-4-item animation-box item-2" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 20px 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"190px","borderStyle":"solid","height":"190px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="shangpinList[1].tupian?shangpinList[1].tupian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{shangpinList[1].shangpinmingcheng}}</div>
+							</div>
+						</div>
+						<div v-if="shangpinList.length>2" @click="jump('../shangpin/detail.html?id='+shangpinList[2].id)" class="list-4-item animation-box item-3" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"190px","borderStyle":"solid","height":"190px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="shangpinList[2].tupian?shangpinList[2].tupian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{shangpinList[2].shangpinmingcheng}}</div>
+							</div>
+						</div>
+					</div>
+					<div v-if="shangpinList.length>3" class="list-4-item animation-box item-1" @click="jump('../shangpin/detail.html?id='+shangpinList[3].id)" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"250px","borderStyle":"solid","height":"400px"}'>
+						<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="shangpinList[3].tupian?shangpinList[3].tupian.split(',')[0]:''" alt="" />
+						<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+							<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{shangpinList[3].shangpinmingcheng}}</div>
+						</div>
+					</div>
+					<div class="list-4-body">
+						<div v-if="shangpinList.length>4" @click="jump('../shangpin/detail.html?id='+shangpinList[4].id)" class="list-4-item animation-box item-4" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 0 20px 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"190px","borderStyle":"solid","height":"190px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="shangpinList[4].tupian?shangpinList[4].tupian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{shangpinList[4].shangpinmingcheng}}</div>
+							</div>
+						</div>
+						<div v-if="shangpinList.length>5" @click="jump('../shangpin/detail.html?id='+shangpinList[5].id)" class="list-4-item animation-box item-5" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"190px","borderStyle":"solid","height":"190px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="shangpinList[5].tupian?shangpinList[5].tupian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{shangpinList[5].shangpinmingcheng}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div style="text-align: center;">
+					<button @click="jump('../shangpin/list.html')" style="display: block;cursor: pointer;" type="button" :style='{"padding":"0 15px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"4px auto","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"rgba(160, 67, 26, 1)","borderRadius":"6px","borderWidth":"0","width":"auto","fontSize":"17px","borderStyle":"solid","height":"34px","font-weight":"1000"}'>查看更多<i v-if="true" :style='{"isshow":true,"padding":"0 0 0 1px","fontSize":"14px","color":"rgba(160, 67, 26, 1)"}' class="layui-icon layui-icon-next"></i></el-button>
+				</div>
+			</div>
+		</div>
+		<div class="recommend index-pv3" :style='{"padding":"10px 0 10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0 0 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(255, 0, 0, 0)","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
+			<div class="box" style='width:80%'>
+				<div class="title color4" :style='{"isshow":true,"padding":"10px 0 10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0 10px 0","borderColor":"rgba(135, 206, 250, 1)","backgroundColor":"#f7f7f7","color":"rgba(23, 22, 22, 1)","borderRadius":"32px","alignItems":"center","borderWidth":"0 10px","fontSize":"20px","borderStyle":"solid"}'>
+					<span>DATA SHOW</span>
+					<span>
+						<svg t="1711471011719" class="icon" style="float: left;rgba(0,0,0,0);" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2890" width="35" height="35"><path d="M193.232516 449.969548c-20.781419 48.858839-32.280774 102.618839-32.280774 159.06271 0 167.514839 101.28929 311.353806 245.949935 373.677419h321.519484c144.660645-62.323613 245.945806-206.162581 245.945807-373.677419 0-187.548903-126.942968-345.447226-299.602581-392.456258 0 0-268.981677-95.698581-481.531871 233.393548z" fill="#FF99A8" p-id="2891"></path><path d="M707.185548 226.90271c69.528774 70.234839 111.219613 159.735742 111.219613 257.226322 0 225.659871-223.223742 498.580645-498.580645 408.596645-14.476387-4.731871-30.290581-0.59871-45.171613-1.684645A407.531355 407.531355 0 0 0 406.905806 982.709677h321.515355c144.660645-62.323613 245.945806-206.162581 245.945807-373.677419 0-175.599484-111.289806-325.194323-267.18142-382.129548z" fill="#C77783" opacity=".37" p-id="2892"></path><path d="M580.605935 203.652129c-97.350194 0.317935-253.534968 39.097806-387.36929 246.31329-20.781419 48.862968-32.280774 46.179097-32.280774 102.622968 0 0.08671 0-0.08671 0 0 20.645161 68.153806 129.230452 105.992258 206.534194 105.992258 192.693677 0 348.903226-113.688774 348.903225-253.935484-0.008258-81.816774-0.441806-168.61729-135.787355-200.993032z" fill="#FFA8B6" p-id="2893"></path><path d="M545.133419 226.609548s-11.47871 236.382968-357.788903 315.594323c0 0-17.486452-33.725935 14.228645-72.225032 31.715097-38.499097 343.560258-243.36929 343.560258-243.369291z" fill="#6E6E96" opacity=".15" p-id="2894"></path><path d="M174.234839 441.889032c-22.511484 52.930065-33.928258 109.167484-33.928258 167.143226a427.189677 427.189677 0 0 0 258.423742 392.637936 20.52129 20.52129 0 0 0 8.171354 1.684645h321.519484c2.820129 0 5.59071-0.573935 8.171355-1.684645a427.185548 427.185548 0 0 0 258.423742-392.637936c0-192.334452-129.461677-361.909677-314.822193-412.37471 0.503742 0.136258 1.003355 0.293161 1.494709 0.466581-2.956387-1.052903-73.579355-25.571097-171.705806-7.568516-89.6 16.437677-220.292129 73.017806-334.092387 249.211871-0.64 0.990968-1.19329 2.035613-1.655742 3.121548z m495.108129-205.39458c167.440516 45.588645 284.378839 198.779871 284.378838 372.537806a385.936516 385.936516 0 0 1-233.472 354.716903 20.52129 20.52129 0 0 1 8.171355-1.684645H406.901677c2.807742 0 5.59071 0.573935 8.171355 1.684645A385.940645 385.940645 0 0 1 181.601032 609.032258c0-52.389161 10.306065-103.188645 30.633291-150.982193a20.707097 20.707097 0 0 1-1.655742 3.121548c201.352258-311.758452 454.726194-226.048 457.269677-225.143742 0.491355 0.177548 0.990968 0.330323 1.49471 0.466581z" fill="#6E6E96" p-id="2895"></path><path d="M524.178581 232.993032a20.645161 20.645161 0 0 1-20.645162-20.645161V41.290323a20.645161 20.645161 0 0 1 41.290323 0v171.057548a20.645161 20.645161 0 0 1-20.645161 20.645161z" fill="#6E6E96" p-id="2896"></path><path d="M54.240975 412.445306a111.475613 255.983484 65.478 1 0 465.788557-212.488108 111.475613 255.983484 65.478 1 0-465.788557 212.488108Z" fill="#6BDFBB" p-id="2897"></path><path d="M520.033032 199.973161c-4.484129-9.831226 0.04129-4.157935-10.054193-10.413419-12.672 54.300903-98.683871 109.307871-201.364645 156.143484 94.757161-164.884645-86.635355 31.207226-121.637162 32.821677-47.479742 2.188387-82.762323-12.304516-97.738322-41.542193-3.2 13.724903-40.171355 64.165161-35.018323 75.466322 25.550452 56.014452 150.540387 53.859097 279.168-4.810322 128.635871-58.677677 212.190968-151.651097 186.644645-207.665549z" fill="#61C9A9" p-id="2898"></path><path d="M73.007484 403.877161c-17.829161-39.085419 50.237935-122.752 176.42529-180.30658 86.664258-39.531355 177.346065-53.970581 225.655742-35.92671 13.299613 4.967226 22.10271 11.998968 26.161549 20.897032 17.829161 39.085419-50.242065 122.752-176.425291 180.31071-126.183226 57.55871-233.992258 54.115097-251.81729 15.025548z m268.952774 22.540387c143.483871-65.453419 228.112516-166.48671 196.855742-235.012129-8.646194-18.952258-25.68671-33.630968-49.28-42.442322-59.701677-22.296774-158.269935-8.10529-257.23871 37.041548-143.483871 65.44929-228.116645 166.482581-196.855742 235.012129 31.256774 68.529548 163.03071 70.854194 306.51871 5.400774z" fill="#6E6E96" p-id="2899"></path></svg>
+						<span style="float: left;padding: 0;line-height: 35px">扶贫政策展示</span>
+					</span>
+				</div>
+				<div class="list-4">
+					<div v-if="fupinzhengceList.length>0" class="list-4-item animation-box item-1" @click="jump('../fupinzhengce/detail.html?id='+fupinzhengceList[0].id)" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"250px","borderStyle":"solid","height":"400px"}'>
+						<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="fupinzhengceList[0].fengmian?fupinzhengceList[0].fengmian.split(',')[0]:''" alt="" />
+						<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+							<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{fupinzhengceList[0].biaoti}}</div>
+						</div>
+					</div>
+					<div class="list-4-body">
+						<div v-if="fupinzhengceList.length>1" @click="jump('../fupinzhengce/detail.html?id='+fupinzhengceList[1].id)" class="list-4-item animation-box item-2" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 20px 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"190px","borderStyle":"solid","height":"190px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="fupinzhengceList[1].fengmian?fupinzhengceList[1].fengmian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{fupinzhengceList[1].biaoti}}</div>
+							</div>
+						</div>
+						<div v-if="fupinzhengceList.length>2" @click="jump('../fupinzhengce/detail.html?id='+fupinzhengceList[2].id)" class="list-4-item animation-box item-3" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"190px","borderStyle":"solid","height":"190px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="fupinzhengceList[2].fengmian?fupinzhengceList[2].fengmian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{fupinzhengceList[2].biaoti}}</div>
+							</div>
+						</div>
+					</div>
+					<div v-if="fupinzhengceList.length>3" class="list-4-item animation-box item-1" @click="jump('../fupinzhengce/detail.html?id='+fupinzhengceList[3].id)" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"250px","borderStyle":"solid","height":"400px"}'>
+						<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="fupinzhengceList[3].fengmian?fupinzhengceList[3].fengmian.split(',')[0]:''" alt="" />
+						<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+							<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{fupinzhengceList[3].biaoti}}</div>
+						</div>
+					</div>
+					<div class="list-4-body">
+						<div v-if="fupinzhengceList.length>4" @click="jump('../fupinzhengce/detail.html?id='+fupinzhengceList[4].id)" class="list-4-item animation-box item-4" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 0 20px 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"190px","borderStyle":"solid","height":"190px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="fupinzhengceList[4].fengmian?fupinzhengceList[4].fengmian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{fupinzhengceList[4].biaoti}}</div>
+							</div>
+						</div>
+						<div v-if="fupinzhengceList.length>5" @click="jump('../fupinzhengce/detail.html?id='+fupinzhengceList[5].id)" class="list-4-item animation-box item-5" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"190px","borderStyle":"solid","height":"190px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="fupinzhengceList[5].fengmian?fupinzhengceList[5].fengmian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{fupinzhengceList[5].biaoti}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div style="text-align: center;">
+					<button @click="jump('../fupinzhengce/list.html')" style="display: block;cursor: pointer;" type="button" :style='{"padding":"0 15px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"4px auto","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"rgba(160, 67, 26, 1)","borderRadius":"6px","borderWidth":"0","width":"auto","fontSize":"17px","borderStyle":"solid","height":"34px","font-weight":"1000"}'>查看更多<i v-if="true" :style='{"isshow":true,"padding":"0 0 0 1px","fontSize":"14px","color":"rgba(160, 67, 26, 1)"}' class="layui-icon layui-icon-next"></i></el-button>
+				</div>
+			</div>
+		</div>
+		<div class="recommend index-pv3" :style='{"padding":"10px 0 10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0 0 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(255, 0, 0, 0)","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
+			<div class="box" style='width:80%'>
+				<div class="title color5" :style='{"isshow":true,"padding":"10px 0 10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0 10px 0","borderColor":"rgba(135, 206, 250, 1)","backgroundColor":"#f7f7f7","color":"rgba(23, 22, 22, 1)","borderRadius":"32px","alignItems":"center","borderWidth":"0 10px","fontSize":"20px","borderStyle":"solid"}'>
+					<span>DATA SHOW</span>
+					<span>
+						<svg t="1711471296611" class="icon" style="float: left;rgba(0,0,0,0)" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3108" width="35" height="35"><path d="M507.090044 517.411876m-499.864145 0a499.864145 499.864145 0 1 0 999.72829 0 499.864145 499.864145 0 1 0-999.72829 0Z" fill="#F0F0F0" p-id="3109"></path><path d="M842.426325 205.980389c91.942753-2.717003 195.886277 149.402943 128.719048 237.241973-91.30583 103.488003-176.722131 97.92903-300.910153 220.948014l-79.442119-57.544844c48.285264-168.740429 110.187795-324.032901 251.633224-400.645143z" fill="#BCE6B8" p-id="3110"></path><path d="M670.223127 688.35332a24.13457 24.13457 0 0 1-14.18163-4.599556l-79.442119-57.544844a24.191006 24.191006 0 0 1-9.066084-26.246899c20.308996-70.956522 49.240649-162.371193 93.071479-240.087974 45.310266-80.337037 101.0169-137.631949 170.300489-175.162071a24.17085 24.17085 0 0 1 10.807547-2.9105c57.125603-1.588278 120.92278 45.032116 154.300805 112.578274 29.346863 59.383054 27.234534 120.515633-5.655721 163.532168-0.34668 0.447459-0.705453 0.886856-1.080351 1.310128-48.136111 54.557753-94.538822 80.429753-143.67063 107.817471-48.309451 26.936228-98.263616 54.783498-158.356155 114.307643a24.13457 24.13457 0 0 1-17.02763 7.00616z m-51.465852-91.34211l49.280962 35.695943c58.455887-54.646438 109.010695-82.832326 154.018624-107.922281 47.156538-26.28721 87.919653-49.014904 130.359731-96.905114 30.229687-40.355967 10.267371-91.769413 0.233808-112.074379-23.751609-48.055488-66.977764-83.356377-104.116864-85.569486-119.685213 67.618719-179.475415 195.620221-229.776261 366.775317z" fill="#666666" p-id="3111"></path><path d="M645.350854 98.711156C570.580853 34.688234 417.001625 0.354823 344.47295 114.372222c-80.183853 177.129279 8.187291 282.826358 76.805739 428.577068l81.207768 8.364662c11.508969-162.67353-9.404702-344.450739 142.864397-452.602796z" fill="#BCE6B8" p-id="3112"></path><path d="M502.486457 575.500927c-0.822357 0-1.652777-0.044343-2.479165-0.124966l-81.207768-8.364662a24.199068 24.199068 0 0 1-19.406016-13.758358c-11.093759-23.570207-22.85266-46.342244-34.228601-68.364484C306.25753 370.814622 250.615395 263.06568 322.442648 104.399126c0.471646-1.04004 1.011822-2.043799 1.624558-3.007247 35.26864-55.444608 92.527272-85.984695 161.222312-85.984695 61.660661 0 129.017355 24.880335 175.790932 64.929933a24.203099 24.203099 0 0 1 8.433192 19.466484 24.195037 24.195037 0 0 1-10.158529 18.62397c-118.427491 84.114236-123.494662 215.876812-128.856108 355.379221-0.999728 26.073559-2.039768 53.038004-3.890072 79.216373a24.195037 24.195037 0 0 1-24.122476 22.477762z m-65.232271-55.222895l42.629543 4.393968c0.927167-17.551681 1.612465-35.33717 2.277606-52.723574 5.204231-135.322093 10.57777-274.945436 123.172169-372.556004-35.534697-22.102864-79.982294-35.611289-120.043986-35.611289-36.151465 0-86.077412 10.835765-119.49978 62.160525-61.084205 136.418569-15.411134 224.882429 42.359455 336.751219 9.598198 18.58769 19.466484 37.699431 29.104993 57.585155z" fill="#666666" p-id="3113"></path><path d="M494.666001 312.076554c12.927938-121.188837 56.710393-212.857471 97.775846-252.536204 97.924998-94.603321 284.56782 17.108253 269.358244 142.090415-41.343602 180.817792-194.346373 280.323006-298.447112 410.485211l-58.689695-84.114236" fill="#BCE6B8" p-id="3114"></path><path d="M563.352979 636.306982a24.211162 24.211162 0 0 1-19.837351-10.343963l-58.689694-84.114236a24.186975 24.186975 0 0 1 39.674701-27.681993l40.557525 58.129363c25.795409-29.830602 53.630585-58.32689 80.732091-86.077412 84.396417-86.407967 164.124748-168.030945 192.137296-288.699762 6.280551-57.63353-40.807458-108.768826-87.532661-132.028633-53.441121-26.601641-106.200975-22.316515-141.151154 11.452533-50.196035 48.498916-81.639102 154.333055-90.531847 237.701525a24.207131 24.207131 0 0 1-26.613734 21.486096 24.186975 24.186975 0 0 1-21.486096-26.617766c11.984646-112.35656 53.211344-217.299812 105.019844-267.362819 49.587329-47.906335 124.816883-55.557481 196.317612-19.966347 88.613013 44.10898 121.031622 123.377758 113.856153 182.373821a24.356284 24.356284 0 0 1-0.431335 2.471102c-30.781957 134.640826-119.338533 225.309732-204.984611 312.991547-35.220266 36.058748-68.493481 70.126102-98.154774 107.208766a24.174881 24.174881 0 0 1-18.881965 9.078178z" fill="#666666" p-id="3115"></path><path d="M620.071434 356.358873c-137.881881-67.126917-263.565464-90.809997-367.593642 122.889988-104.040272 213.708047-53.670897 452.844666 61.326074 508.821388 97.957248 47.696714 334.308334-51.848812 438.344575-265.548796 104.03221-213.699984 5.82503-299.0276-132.077007-366.16258z" fill="#FF8787" p-id="3116"></path><path d="M372.408906 1023.987907h-0.020155c-26.589548 0-49.861448-4.772896-69.170717-14.173568-63.652055-30.983515-110.804563-110.772313-126.139105-213.433927-16.031933-107.341794 3.023372-223.725485 53.650741-327.717384C290.935082 344.990995 365.596242 284.874269 458.97812 284.874269c61.612287 0 124.115461 26.581485 171.679147 49.740514 141.594581 68.928847 256.950326 164.914856 143.239296 398.496534-88.645263 182.079546-273.740118 290.87659-401.487657 290.87659z m86.569214-690.739688c-74.040361 0-132.750211 49.756638-184.756238 156.590506-46.390618 95.296681-63.901987 201.626653-49.297085 299.398467 12.976312 86.887676 50.159754 153.087426 99.468933 177.088967 12.661881 6.163647 28.810718 9.291829 48.003083 9.291829 141.836451 0.016125 296.266254-136.857966 358.011569-263.678336 90.503628-185.913182 24.195037-263.186535-120.918749-333.828626-63.732679-31.027857-110.147483-44.862807-150.511513-44.862807z" fill="#666666" p-id="3117"></path><path d="M662.334142 871.642215a24.199068 24.199068 0 1 1-15.67316-42.629543c2.672661-14.568621-6.336987-69.348088-73.717868-102.71402a24.186975 24.186975 0 0 1 21.469971-43.351121c84.0578 41.629815 102.891391 111.38505 100.775031 146.040954-1.294003 21.143447-10.347994 36.195808-24.844055 41.279103a24.122476 24.122476 0 0 1-8.009919 1.374627z" fill="#666666" p-id="3118"></path><path d="M735.67308 780.501663a24.186975 24.186975 0 0 1-21.695716-34.845369c3.241055-6.599013 9.557886-45.310266-7.635022-87.766469-17.462996-43.133438-52.19146-74.310449-103.225977-92.652238a24.191006 24.191006 0 0 1 16.370551-45.523917c80.385411 28.903435 115.988637 81.219861 131.698077 120.0198 21.413535 52.880789 16.527766 106.237255 6.224115 127.23558a24.195037 24.195037 0 0 1-21.736028 13.532613z" fill="#666666" p-id="3119"></path><path d="M364.51589 1023.105082c-22.360858 0-43.012503-4.381874-61.297856-13.286712l21.171665-43.492211c40.166503 19.5592 103.745997 4.559245 170.066682-40.130223 76.104316-51.280418 143.759316-132.395469 190.500644-228.393571 90.499597-185.913182 24.191006-263.186535-120.92278-333.828626l21.171665-43.496243c141.594581 68.932878 256.946295 164.914856 143.235265 398.496534-50.405655 103.536377-123.905841 191.371375-206.959881 247.336004-55.55345 37.437406-110.002361 56.791017-156.965404 56.795048z" fill="#666666" opacity=".15" p-id="3120"></path><path d="M761.964322 484.529684a24.186975 24.186975 0 0 1-12.391794-44.97568c36.703734-21.836807 71.214516-66.360996 99.795458-128.755329 22.223799-48.51504 32.733039-90.148886 32.83785-90.564096a24.186975 24.186975 0 1 1 46.930793 11.710527c-1.878522 7.530211-47.26538 185.17951-154.824857 249.178245a24.074102 24.074102 0 0 1-12.34745 3.406333z" fill="#666666" opacity=".15" p-id="3121"></path><path d="M701.625882 427.275083a24.186975 24.186975 0 0 1-12.41598-44.959555c131.379616-78.398048 105.38668-291.138615 105.104499-293.275131a24.199068 24.199068 0 0 1 20.845141-27.109567 24.158757 24.158757 0 0 1 27.11763 20.804829c0.326524 2.487227 7.901078 61.664692-3.317647 132.645401-15.290199 96.727743-58.50023 168.817022-124.962005 208.475598a24.106352 24.106352 0 0 1-12.371638 3.418425z" fill="#666666" opacity=".15" p-id="3122"></path></svg>
+						<span style="float: left;padding: 0;line-height: 35px">爱心箱展示</span>
+					</span>
+				</div>
+				<div class="list-4">
+					<div v-if="aixinxiangList.length>0" class="list-4-item animation-box item-1" @click="jump('../aixinxiang/detail.html?id='+aixinxiangList[0].id)" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"250px","borderStyle":"solid","height":"400px"}'>
+						<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="aixinxiangList[0].fengmian?aixinxiangList[0].fengmian.split(',')[0]:''" alt="" />
+						<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+							<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{aixinxiangList[0].diqu}}</div>
+							<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{aixinxiangList[0].dianjiaming}}</div>
+						</div>
+					</div>
+					<div class="list-4-body">
+						<div v-if="aixinxiangList.length>1" @click="jump('../aixinxiang/detail.html?id='+aixinxiangList[1].id)" class="list-4-item animation-box item-2" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 20px 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"190px","borderStyle":"solid","height":"190px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="aixinxiangList[1].fengmian?aixinxiangList[1].fengmian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{aixinxiangList[1].diqu}}</div>
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{aixinxiangList[1].dianjiaming}}</div>
+							</div>
+						</div>
+						<div v-if="aixinxiangList.length>2" @click="jump('../aixinxiang/detail.html?id='+aixinxiangList[2].id)" class="list-4-item animation-box item-3" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"190px","borderStyle":"solid","height":"190px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="aixinxiangList[2].fengmian?aixinxiangList[2].fengmian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{aixinxiangList[2].diqu}}</div>
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{aixinxiangList[2].dianjiaming}}</div>
+							</div>
+						</div>
+					</div>
+					<div v-if="aixinxiangList.length>3" class="list-4-item animation-box item-1" @click="jump('../aixinxiang/detail.html?id='+aixinxiangList[3].id)" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 20px 0 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"250px","borderStyle":"solid","height":"400px"}'>
+						<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="aixinxiangList[3].fengmian?aixinxiangList[3].fengmian.split(',')[0]:''" alt="" />
+						<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+							<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{aixinxiangList[3].diqu}}</div>
+							<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{aixinxiangList[3].dianjiaming}}</div>
+						</div>
+					</div>
+					<div class="list-4-body">
+						<div v-if="aixinxiangList.length>4" @click="jump('../aixinxiang/detail.html?id='+aixinxiangList[4].id)" class="list-4-item animation-box item-4" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0 0 20px 0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"190px","borderStyle":"solid","height":"190px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="aixinxiangList[4].fengmian?aixinxiangList[4].fengmian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{aixinxiangList[4].diqu}}</div>
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{aixinxiangList[4].dianjiaming}}</div>
+							</div>
+						</div>
+						<div v-if="aixinxiangList.length>5" @click="jump('../aixinxiang/detail.html?id='+aixinxiangList[5].id)" class="list-4-item animation-box item-5" :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0, .3)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"190px","borderStyle":"solid","height":"190px"}'>
+							<img :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"#ccc","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"100%"}' :src="aixinxiangList[5].fengmian?aixinxiangList[5].fengmian.split(',')[0]:''" alt="" />
+							<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}' v-if="true" class="list-4-item-center">
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{aixinxiangList[5].diqu}}</div>
+								<div :style='{"padding":"0 6px","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"#fff","textAlign":"left","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="list-4-item-title">{{aixinxiangList[5].dianjiaming}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div style="text-align: center;">
+					<button @click="jump('../aixinxiang/list.html')" style="display: block;cursor: pointer;" type="button" :style='{"padding":"0 15px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"4px auto","borderColor":"#ccc","backgroundColor":"rgba(0,0,0,0)","color":"rgba(160, 67, 26, 1)","borderRadius":"6px","borderWidth":"0","width":"auto","fontSize":"17px","borderStyle":"solid","height":"34px","font-weight":"1000"}'>查看更多<i v-if="true" :style='{"isshow":true,"padding":"0 0 0 1px","fontSize":"14px","color":"rgba(160, 67, 26, 1)"}' class="layui-icon layui-icon-next"></i></el-button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script src="../../layui/layui.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/Swiper/5.4.5/js/swiper.min.js"></script>
+<script src="../../js/vue.js"></script>
+<script src="../../js/config.js"></script>
+<script src="../../modules/config.js"></script>
+<script src="../../js/utils.js"></script>
+<script type="text/javascript">
+	var vue = new Vue({
+		el: '#app',
+		data: {
+
+			shangpinRecommend: [],
+
+			shangpinList: [],
+			fupinzhengceList: [],
+			aixinxiangList: [],
+			swiperList: [],
+			// 自然风光介绍
+			newsList: [],
+			leftNewsList: [],
+			rightNewsList: []
+		},
+		filters: {
+			newsDesc: function(val) {
+				if (val) {
+					val = val.replace(/<[^<>]+>/g, '').replace(/undefined/g, '');
+					if (val.length > 60) {
+						val = val.substring(0, 60);
+					}
+
+					return val;
+				}
+				return '';
+			}
+		},
+		methods: {
+			jump(url) {
+				jump(url)
+			},
+		}
+	});
+
+	layui.use(['layer', 'form', 'element', 'carousel', 'http', 'jquery'], function() {
+		var layer = layui.layer;
+		var element = layui.element;
+		var form = layui.form;
+		var carousel = layui.carousel;
+		var http = layui.http;
+		var jquery = layui.jquery;
+
+		// 获取轮播图 数据
+		http.request('config/list', 'get', {
+			page: 1,
+			limit: 5
+		}, function(res) {
+			if (res.data.list.length > 0) {
+				let swiperList = [];
+				res.data.list.forEach(element => {
+					if (element.value != null) {
+						swiperList.push({
+							img: element.value
+						});
+					}
+				});
+
+				vue.swiperList = swiperList;
+
+				vue.$nextTick(() => {
+					carousel.render({
+						elem: '#test1',
+						width: '100%',
+						height: '450px',
+						arrow: 'hover',
+						anim: 'default',
+						autoplay: 'true',
+						interval: '3000',
+						indicator: 'inside'
+					});
+
+				})
+
+				// vue.$nextTick(()=>{
+				//   window.xznSlide();
+				// });
+			}
+		});
+
+		// 自然风光介绍
+		http.request('news/list', 'get', {
+			page: 1,
+			limit: 3 * 1,
+			order: 'desc'
+		}, function(res) {
+			var newsList = res.data.list;
+			for(var i = 0; i<newsList.length; i++) {
+				let d = newsList[i].addtime.split(' ')
+				d = d[0].split('-')
+				newsList[i].year = d[0]
+				newsList[i].month = d[1] + '-' + d[2]
+			}
+
+			vue.newsList = newsList;
+			if (newsList.length > 0 && newsList.length <= 2) {
+				vue.leftNewsList = res.data.list
+			} else {
+				var leftNewsList = []
+				for (let i = 0; i <= 2; i++) {
+					leftNewsList.push(newsList[i]);
+				}
+				vue.leftNewsList = leftNewsList
+			}
+			if (newsList.length > 2 && newsList.length <= 8) {
+				var rightNewsList = []
+				for (let i = 3; i <= newsList.length; i++) {
+					rightNewsList.push(newsList[i]);
+				}
+				vue.rightNewsList = rightNewsList
+			}
+
+			let flag = 2;
+			let options = {"navigation":{"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"},"slidesPerView":5,"loop":true,"spaceBetween":20,"autoplay":{"delay":3000,"disableOnInteraction":false}}
+			options.pagination = {el:'null'}
+			if(flag == 3) {
+				vue.$nextTick(() => {
+					new Swiper ('#newsnews', options)
+				})
+			}
+
+			if(flag == 6) {
+				let sixSwiper = {
+					loop: true,
+					speed: 2500,
+					slidesPerView: 3,
+					spaceBetween: 10,
+					centeredSlides: true,
+					watchSlidesProgress: true,
+					autoplay: {
+						delay: 0,
+						stopOnLastSlide: false,
+						disableOnInteraction: false
+					}
+				}
+
+				vue.$nextTick(() => {
+					new Swiper('#new-list-6', sixSwiper)
+				})
+			}
+		});
+
+		// 获取推荐信息
+		http.request(`shangpin/autoSort`, 'get', {
+			page: 1,
+		}, function(res) {
+			vue.shangpinRecommend = res.data.list
+			let flag = 9;
+			let options = {"navigation":{"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"},"slidesPerView":5,"loop":true,"spaceBetween":20,"autoplay":{"delay":3000,"disableOnInteraction":false}}
+			options.pagination = {el:'null'}
+			if(flag == 3) {
+				vue.$nextTick(() => {
+					new Swiper ('#recommendshangpin', options)
+				})
+			}
+
+			// 商品推荐样式五
+			if(flag == 5) {
+				vue.$nextTick(() => {
+					var swiper = new Swiper('#recommend-five-swiper', {
+						loop: true,
+						speed: 500,
+						slidesPerView: 5,
+						spaceBetween: 10,
+						autoplay: {"delay":3000,"disableOnInteraction":false},
+						centeredSlides: true,
+						watchSlidesProgress: true,
+						on: {
+							setTranslate: function() {
+								slides = this.slides
+								for (i = 0; i < slides.length; i++) {
+									slide = slides.eq(i)
+									progress = slides[i].progress
+									// slide.html(progress.toFixed(2)); //看清楚progress是怎么变化的
+									slide.css({
+										'opacity': '',
+										'background': ''
+									});
+									slide.transform(''); //清除样式
+
+									slide.transform('scale(' + (1.5 - Math.abs(progress) / 4) + ')');
+								}
+							},
+							setTransition: function(transition) {
+								for (var i = 0; i < this.slides.length; i++) {
+									var slide = this.slides.eq(i)
+									slide.transition(transition);
+								}
+							},
+						},
+						navigation: {"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"},
+						pagination: {"el":".swiper-pagination","clickable":true},
+					});
+				})
+			}
+		});
+
+		http.request(`shangpin/list`, 'get', {
+			page: 1,
+		}, function(res) {
+			vue.shangpinList = res.data.list;
+			let flag = 7;
+			let options = {"navigation":{"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"},"slidesPerView":5,"loop":true,"spaceBetween":20,"autoplay":{"delay":3000,"disableOnInteraction":false}}
+			options.pagination = {el:'null'}
+			if(flag == 3) {
+				vue.$nextTick(() => {
+					new Swiper ('#listsshangpin', options)
+					new Swiper ('#listsfupinzhengce', options)
+					new Swiper ('#listsaixinxiang', options)
+				})
+			}
+
+			// 商品列表样式五
+			if(flag == 5) {
+				vue.$nextTick(() => {
+					var swiper = new Swiper('#lists-five-swiper', {
+						loop: true,
+						speed: 500,
+						slidesPerView: 5,
+						spaceBetween: 10,
+						autoplay: {"delay":3000,"disableOnInteraction":false},
+						centeredSlides: true,
+						watchSlidesProgress: true,
+						on: {
+							setTranslate: function() {
+								slides = this.slides
+								for (i = 0; i < slides.length; i++) {
+									slide = slides.eq(i)
+									progress = slides[i].progress
+									// slide.html(progress.toFixed(2)); //看清楚progress是怎么变化的
+									slide.css({
+										'opacity': '',
+										'background': ''
+									});
+									slide.transform(''); //清除样式
+
+									slide.transform('scale(' + (1.5 - Math.abs(progress) / 4) + ')');
+								}
+							},
+							setTransition: function(transition) {
+								for (var i = 0; i < this.slides.length; i++) {
+									var slide = this.slides.eq(i)
+									slide.transition(transition);
+								}
+							},
+						},
+						navigation: {"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"},
+						pagination: {"el":".swiper-pagination","clickable":true},
+					});
+				})
+			}
+
+			// vue.$nextTick(()=>{
+			//   window.xznSlide();
+			// });
+		});
+		http.request(`fupinzhengce/list`, 'get', {
+			sort : 'fabushijian',
+			order: 'desc',
+			page: 1,
+		}, function(res) {
+			vue.fupinzhengceList = res.data.list;
+			let flag = 7;
+			let options = {"navigation":{"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"},"slidesPerView":5,"loop":true,"spaceBetween":20,"autoplay":{"delay":3000,"disableOnInteraction":false}}
+			options.pagination = {el:'null'}
+			if(flag == 3) {
+				vue.$nextTick(() => {
+					new Swiper ('#listsshangpin', options)
+					new Swiper ('#listsfupinzhengce', options)
+					new Swiper ('#listsaixinxiang', options)
+				})
+			}
+
+			// 商品列表样式五
+			if(flag == 5) {
+				vue.$nextTick(() => {
+					var swiper = new Swiper('#lists-five-swiper', {
+						loop: true,
+						speed: 500,
+						slidesPerView: 5,
+						spaceBetween: 10,
+						autoplay: {"delay":3000,"disableOnInteraction":false},
+						centeredSlides: true,
+						watchSlidesProgress: true,
+						on: {
+							setTranslate: function() {
+								slides = this.slides
+								for (i = 0; i < slides.length; i++) {
+									slide = slides.eq(i)
+									progress = slides[i].progress
+									// slide.html(progress.toFixed(2)); //看清楚progress是怎么变化的
+									slide.css({
+										'opacity': '',
+										'background': ''
+									});
+									slide.transform(''); //清除样式
+
+									slide.transform('scale(' + (1.5 - Math.abs(progress) / 4) + ')');
+								}
+							},
+							setTransition: function(transition) {
+								for (var i = 0; i < this.slides.length; i++) {
+									var slide = this.slides.eq(i)
+									slide.transition(transition);
+								}
+							},
+						},
+						navigation: {"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"},
+						pagination: {"el":".swiper-pagination","clickable":true},
+					});
+				})
+			}
+
+			// vue.$nextTick(()=>{
+			//   window.xznSlide();
+			// });
+		});
+		http.request(`aixinxiang/list`, 'get', {
+			page: 1,
+		}, function(res) {
+			vue.aixinxiangList = res.data.list;
+			let flag = 7;
+			let options = {"navigation":{"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"},"slidesPerView":5,"loop":true,"spaceBetween":20,"autoplay":{"delay":3000,"disableOnInteraction":false}}
+			options.pagination = {el:'null'}
+			if(flag == 3) {
+				vue.$nextTick(() => {
+					new Swiper ('#listsshangpin', options)
+					new Swiper ('#listsfupinzhengce', options)
+					new Swiper ('#listsaixinxiang', options)
+				})
+			}
+
+			// 商品列表样式五
+			if(flag == 5) {
+				vue.$nextTick(() => {
+					var swiper = new Swiper('#lists-five-swiper', {
+						loop: true,
+						speed: 500,
+						slidesPerView: 5,
+						spaceBetween: 10,
+						autoplay: {"delay":3000,"disableOnInteraction":false},
+						centeredSlides: true,
+						watchSlidesProgress: true,
+						on: {
+							setTranslate: function() {
+								slides = this.slides
+								for (i = 0; i < slides.length; i++) {
+									slide = slides.eq(i)
+									progress = slides[i].progress
+									// slide.html(progress.toFixed(2)); //看清楚progress是怎么变化的
+									slide.css({
+										'opacity': '',
+										'background': ''
+									});
+									slide.transform(''); //清除样式
+
+									slide.transform('scale(' + (1.5 - Math.abs(progress) / 4) + ')');
+								}
+							},
+							setTransition: function(transition) {
+								for (var i = 0; i < this.slides.length; i++) {
+									var slide = this.slides.eq(i)
+									slide.transition(transition);
+								}
+							},
+						},
+						navigation: {"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"},
+						pagination: {"el":".swiper-pagination","clickable":true},
+					});
+				})
+			}
+
+			// vue.$nextTick(()=>{
+			//   window.xznSlide();
+			// });
+		});
+	});
+
+	window.xznSlide = function() {
+		// jQuery(".banner").slide({mainCell:".bd ul",autoPlay:true,interTime:5000});
+		jQuery("#ifocus").slide({ titCell:"#ifocus_btn li", mainCell:"#ifocus_piclist ul",effect:"leftLoop", delayTime:200, autoPlay:true,triggerTime:0});
+		jQuery("#ifocus").slide({ titCell:"#ifocus_btn li", mainCell:"#ifocus_tx ul",delayTime:0, autoPlay:true});
+		jQuery(".product_list").slide({mainCell:".bd ul",autoPage:true,effect:"leftLoop",autoPlay:true,vis:5,trigger:"click",interTime:4000});
+	};
+</script>
+<script src="../../xznstatic/js/index.js"></script>
+</body>
+</html>
